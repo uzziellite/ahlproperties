@@ -1,0 +1,45 @@
+---
+import Layout from "@layouts/Layout.astro"
+
+const path = String(Astro.url)
+const property = path.split('=')
+
+//Load purchase process
+const details = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=12`)
+const details_data = await details.json()
+---
+
+<Layout title="Purchase Property" description="AHL properties offers the best prime land for purchase in Kenya with fast appreciation. Get yourself land close to the beach, gamepark or mountanious areas of Kenya to build your Airbnb, hotels, residential area or spa resorts">
+	<section class="bg-blue-800 h-[36em] w-full bg-cover bg-opacity-80" style="background-image: url('/images/book.jpg');">
+		<h1 class="text-white text-6xl pt-72 text-center uppercase px-6">
+			Purchase a plot in {property[1]}
+		</h1>
+	</section>
+	<section class="py-6 mb-2 -mt-24 container mx-auto bg-white rounded-md shadow-lg">
+		<div class="mt-4 grid p-4 place-content-center">
+			<h3 class="text-2xl font-bold uppercase mb-4 text-center">
+				{details_data[0].title.rendered}
+			</h3>
+			<div class="prose prose-lg" set:html={details_data[0].content.rendered}></div>
+			<a href={`/purchase/map?property=${property[1]}`} class="inline-flex items-center rounded-full bg-blue-800 px-8 py-3 text-white shadow-lg transition hover:bg-blue-900 focus:outline-none focus:ring sm:w-44">
+	      <span class="text-sm font-medium">
+	      	Get started
+	      </span>
+	      <svg
+	        class="ml-3 h-5 w-5"
+	        xmlns="http://www.w3.org/2000/svg"
+	        fill="none"
+	        viewBox="0 0 24 24"
+	        stroke="currentColor"
+	      >
+	        <path
+	          stroke-linecap="round"
+	          stroke-linejoin="round"
+	          stroke-width="2"
+	          d="M17 8l4 4m0 0l-4 4m4-4H3"
+	        />
+	      </svg>
+	    </a>
+		</div>
+	</section>
+</Layout>

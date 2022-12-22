@@ -1,0 +1,26 @@
+---
+import Layout from "@layouts/Layout.astro"
+import Cta from "@components/Cta.svelte"
+
+//Fetch youtube videos
+const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=5&tags=6`)
+const data = await res.json()
+---
+
+<Layout title="AHL Properties Videos" description="">
+	<section class="bg-blue-800 h-[36em] w-full bg-cover bg-opacity-80" style="background-image: url('/images/videos.jpg');">
+		<h1 class="text-white text-6xl pt-72 text-center font-bold uppercase">
+			Our Videos
+		</h1>
+	</section>
+	<section class="py-6 mb-2 -mt-24 container mx-auto bg-white rounded-md shadow-lg mb-24">
+		<div class="mt-4 grid sm:grid-cols-2 gap-4 p-6">
+			{
+				data.map((item) => (
+					<div class="mt-4 overflow-hidden" set:html={item.content.rendered}></div>
+				))
+			}
+		</div>
+	</section>
+	<Cta client:load />
+</Layout>

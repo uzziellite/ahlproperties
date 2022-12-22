@@ -1,0 +1,160 @@
+---
+import Layout from "@layouts/Layout.astro"
+import Cta from "@components/Cta.svelte"
+
+//Load company details
+const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=8`)
+const data = await res.json()
+
+//Load single blog
+const blog = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts/6?_embed`)
+const blog_data = await blog.json()
+
+//Load Team
+const team = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=13&_embed&order=asc`)
+const team_data = await team.json()
+---
+
+<Layout title="About Us" description="">
+	<section class="bg-blue-800 h-[36em] w-full bg-cover bg-black bg-opacity-80" style="background-image: url('/images/about.jpg');">
+		<h1 class="text-white text-6xl pt-64 text-center uppercase font-serif">
+			About Us
+		</h1>
+	</section>
+	<section class="py-6 mb-2 -mt-24 container mx-auto bg-white rounded-md shadow-lg">
+		<h2 class="text-center text-4xl font-serif uppercase text-blue-800 mb-4">
+			Who we are
+		</h2>
+		<div class="grid sm:grid-cols-2 gap-4 p-4">
+			<!-- About us content -->
+			<div class="p-4">
+				<div class="prose max-w-2xl" set:html={data[5].content.rendered}></div>
+			</div>
+			<!-- Begin tiny gallery for about us page -->
+			<div class="grid place-content-center">
+				<div class="swiper-container !overflow-hidden rounded-lg">
+			  	<div class="swiper-wrapper">
+			    	<div class="swiper-slide">
+			        <img alt="Nairobi" src="/images/banner-1.jpg" />
+				    </div>
+				    <div class="swiper-slide">
+			        <img alt="Beach" src="/images/mountain.jpg" />
+				    </div>
+				    <div class="swiper-slide">
+			        <img alt="Beach" src="/images/gamepark.jpg" />
+				    </div>
+				  </div>
+				</div>
+			</div>
+			<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+			<link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
+			<script>
+			  document.addEventListener('DOMContentLoaded', function () {
+			    new Swiper('.swiper-container', {
+			      loop: true,
+			      slidesPerView: 1,
+			      spaceBetween: 8,
+			      autoplay: {
+			        delay: 3000,
+			      }
+			    })
+			  })
+			</script>
+		</div>
+	</section>
+	<section class="py-6 mt-6 mb-2 container mx-auto bg-white rounded-md shadow-lg">
+		<!--
+		  Blog Article goes here
+		-->
+
+		<article class="flex transition mt-4 mb-2">
+		  <div class="hidden sm:block sm:basis-56">
+		    <img
+		      alt={blog_data.title.rendered}
+		      src={blog_data["_embedded"]["wp:featuredmedia"][0].media_details.sizes.medium.source_url}
+		      class="aspect-square h-full w-full object-cover"
+		    />
+		  </div>
+
+		  <div class="flex flex-1 flex-col justify-between">
+		    <div class="border-l border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+		      <a href={`/blog/${blog_data.slug}`}>
+		        <h3 class="font-light uppercase text-gray-700 font-serif text-xl">
+		          {blog_data.title.rendered}
+		        </h3>
+		      </a>
+
+		      <div class="mt-2 leading-relaxed text-gray-700 line-clamp-3" set:html={blog_data.excerpt.rendered}></div>
+		    </div>
+
+		    <div class="sm:flex sm:items-end sm:justify-end">
+		      <a
+		        href={`/blog/${blog_data.slug}`}
+		        class="block bg-yellow-300 px-5 py-3 text-center text-xs font-bold uppercase text-gray-900 transition hover:bg-yellow-400"
+		      >
+		        Read Blog
+		      </a>
+		    </div>
+		  </div>
+		</article>
+	</section>
+	<section class="py-6 mt-2 container mx-auto">
+		<div class="grid sm:grid-cols-2 gap-6">
+			<div class="bg-white p-2 shadow-md rounded-lg">
+				<h2 class="text-center text-4xl font-serif uppercase text-blue-800">
+					{data[4].title.rendered}
+				</h2>
+				<span class="mt-4" set:html={data[4].content.rendered}></span>
+			</div>
+			<div class="bg-white p-2 shadow-md rounded-lg">
+				<h2 class="text-center text-4xl font-serif uppercase text-blue-800">
+					{data[3].title.rendered}
+				</h2>
+				<span class="mt-4" set:html={data[3].content.rendered}></span>
+			</div>
+			<div class="bg-white p-2 shadow-md rounded-lg">
+				<h2 class="text-center text-4xl font-serif uppercase text-blue-800">
+					{data[2].title.rendered}
+				</h2>
+				<span class="mt-4 prose" set:html={data[2].content.rendered}></span>
+			</div>
+			<div class="bg-white p-2 shadow-md rounded-lg">
+				<h2 class="text-center text-4xl font-serif uppercase text-blue-800">
+					{data[1].title.rendered}
+				</h2>
+				<span class="mt-4 prose" set:html={data[1].content.rendered}></span>
+			</div>
+		</div>
+	</section>
+	<section class="py-6 mt-2 container mx-auto">
+		<article class="bg-white shadow-md p-2 rounded-lg">
+			<h2 class="pl-2 mt-2 text-left text-4xl font-serif uppercase text-blue-800">
+				{data[0].title.rendered}
+			</h2>
+			<div class="mt-4 prose" set:html={data[0].content.rendered}></div>
+		</article>
+	</section>
+	<section class="container mx-auto mb-4 bg-white p-2 shadow-lg rounded-lg">
+		<div class="space-y-16">
+			<h3 class="text-2xl leading-none sm:text-5xl text-blue-800 text-center uppercase font-serif">Meet our team</h3>
+			<div class="grid w-full grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+				{
+					team_data.map((item) => (
+						<div class="space-y-4 border border-2 hover:border-yellow-600 transition hover:scale-90 hover:skew-2 p-2">
+							<img alt={item.acf.name} class="object-cover h-56 mx-auto mb-4 bg-center rounded-sm" src={item._embedded["wp:featuredmedia"][0].source_url} />
+							<div class="flex flex-col items-center" >
+								<h4 class="text-xl font-semibold">
+									{item.acf.name}
+								</h4>
+								<p class="text-sm">
+									{item.acf.role}
+								</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+	<Cta client:load  />
+</Layout>

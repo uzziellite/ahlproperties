@@ -1,0 +1,200 @@
+---
+import Layout from "@layouts/Layout.astro"
+import Cta from "@components/Cta.svelte"
+
+//Load blogs
+const blogs = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=3&_embed&per_page=3`)
+const blog_data = await blogs.json()
+
+//Fetch youtube videos
+const videos = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=5&tags=6&per_page=4`)
+const video_data = await videos.json()
+
+//Load properties
+const properties = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=10&_embed&per_page=2`)
+const property_data = await properties.json()
+---
+
+<Layout title="AHL Properties - Your Ideal Investment Partner" description="AHL Properties is your ideal investment partner for anyone looking into purchasing property in the most coveted parts of Kenya. These may include beach plots, plots close to amazing mountain views or plots close to game parks.">
+	<div class="swiper-container !overflow-hidden">
+  	<div class="swiper-wrapper">
+    	<div class="swiper-slide">
+        <img src="/images/beach.png" class="sm:h-screen w-full" />
+	    </div>
+	    <div class="swiper-slide">
+        <img src="/images/airbnb.png" class="sm:h-screen w-full" />
+	    </div>
+	  </div>
+	</div>
+  <div class="swiper-pagination !relative !bottom-0 -mt-12"></div>
+
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
+	<script>
+	  document.addEventListener('DOMContentLoaded', function () {
+	    new Swiper('.swiper-container', {
+	      loop: true,
+	      slidesPerView: 1,
+	      spaceBetween: 8,
+	      autoplay: {
+	        delay: 7000,
+	      },
+	      pagination: {
+	        el: '.swiper-pagination',
+	        clickable: true,
+	      }
+	    })
+	  })
+	</script>
+	<section class="bg-white shadow-md container mx-auto mt-16">
+		<h2 class="text-center text-4xl font-serif uppercase text-blue-800">
+			On going projects
+		</h2>
+		<div class="mt-4 grid sm:grid-cols-2 gap-4">
+			{
+				property_data.map((item) => (
+					<a href={`/properties/${item.slug}`} class="block rounded-lg p-4 bg-white shadow-sm">
+					  <img alt={item.acf.property_name} src={item._embedded["wp:featuredmedia"][0].media_details.sizes.large.source_url} class="h-56 w-full rounded-md object-cover transition hover:scale-90" />
+					  <p class="text-lg text-center mt-2 text-blue-800 font-semibold">
+					  	{item.acf.property_location}
+					  </p>
+					  <h2 class="text-2xl text-center mt-2 uppercase text-blue-800 font-extrabold">
+					  	{item.acf.property_name}
+					  </h2>
+					  <p class="text-gray-600 mt-2">
+					  	{item.acf.property_brief_description}
+					  </p>
+					  <div class="grid grid-cols-2 gap-4">
+					  	<div class="flex flex-col">
+					  		<p class="text-gray-600 mt-2 text-lg uppercase text-center">
+					  			Total Cost
+					  		</p>
+					  		<button class="p-2 text-white bg-yellow-600">
+					  			{item.acf.property_price}
+					  		</button>
+					  	</div>
+					  	<div class="flex flex-col">
+					  		<p class="text-gray-600 mt-2 text-lg uppercase text-center">
+					  			Booking Fee
+					  		</p>
+					  		<button class="p-2 text-white bg-blue-800">
+					  			{item.acf.property_booking_fee}
+					  		</button>
+					  	</div>
+					  </div>
+					</a>
+				))
+			}
+		</div>
+	</section>
+	<section class="bg-white shadow-md container mx-auto mt-4">
+		<h2 class="text-center text-4xl font-serif uppercase text-blue-800 mb-4">
+			Watch Our Videos
+		</h2>
+		<div class="mt-4 grid lg:grid-cols-2 gap-4 p-6">
+			{
+				video_data.map((item) => (
+					<div class="mt-4 max-w-sm sm:max-w-lg overflow-hidden transition hover:scale-90" set:html={item.content.rendered}></div>
+				))
+			}
+		</div>
+	</section>
+	<section class="bg-white shadow-md container mx-auto mt-4">
+		<h2 class="text-center text-4xl font-serif uppercase text-blue-800 mb-4">
+			Blog Posts
+		</h2>
+		<div class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				blog_data.map((item) => (
+					<a href={`/blog/${item.slug}`} class="max-w-sm mx-auto group hover:no-underline focus:no-underline transition hover:scale-90">
+						<img role="presentation" class="object-cover w-full rounded h-44" src={item._embedded["wp:featuredmedia"] ? item._embedded["wp:featuredmedia"][0].media_details.sizes.medium.source_url : ''} />
+						<div class="p-6 space-y-2">
+							<h3 class="text-lg font-serif group-hover:underline group-focus:underline">{item.title.rendered}</h3>
+							<span class="text-xs">{item.date_gmt}</span>
+							<span set:html={item.excerpt.rendered}></span>
+						</div>
+					</a>
+				))
+			}
+		</div>
+	</section>
+	<section class="bg-white shadow-md container mx-auto mt-4">
+		<div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+	    <div class="mx-auto max-w-3xl text-center">
+	      <h2 class="text-center text-4xl font-serif uppercase text-blue-800 mb-4">
+	        Milestones Covered
+	      </h2>
+
+	      <p class="mt-4 text-gray-500 sm:text-xl">
+	        Check out our progress over the years
+	      </p>
+	    </div>
+
+	    <div class="mt-8 sm:mt-12">
+	      <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+	        <div class="flex rounded-lg border border-gray-200 hover:border-yellow-600 transition hover:scale-90 px-4 text-center space-x-12">
+	        	<div class="text-gray-500 py-8">
+		        	<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+	        	</div>
+	        	<div class="flex flex-col py-8">
+		          <dt class="order-last text-lg font-medium text-gray-500">
+		            Projects
+		          </dt>
+
+		          <dd class="text-4xl font-extrabold text-blue-800 md:text-5xl">
+		            10
+		          </dd>
+	        	</div>
+	        </div>
+
+	        <div class="flex rounded-lg border border-gray-200 hover:border-yellow-600 transition hover:scale-90 px-4 text-center space-x-12">
+	        	<div class="text-gray-500 py-8">
+		        	<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+	        	</div>
+	        	<div class="flex flex-col py-8">
+		          <dt class="order-last text-lg font-medium text-gray-500">
+		            Title Deeds
+		          </dt>
+
+		          <dd class="text-4xl font-extrabold text-blue-800 md:text-5xl">
+		            100
+		          </dd>
+	        	</div>
+	        </div>
+	        <div class="flex rounded-lg border border-gray-200 hover:border-yellow-600 transition hover:scale-90 px-4 text-center space-x-12">
+	        	<div class="text-gray-500 py-8">
+		        	<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+	        	</div>
+	        	<div class="flex flex-col py-8">
+		          <dt class="order-last text-lg font-medium text-gray-500">
+		            Years Experience
+		          </dt>
+
+		          <dd class="text-4xl font-extrabold text-blue-800 md:text-5xl">
+		            5+
+		          </dd>
+	        	</div>
+	        </div>
+	      </dl>
+	    </div>
+	  </div>
+	</section>
+	<section class="container mx-auto mt-4 mb-4">
+		<div class="grid sm:grid-cols-2 gap-6">
+			<div class="h-[29rem] overflow-hidden overflow-scroll p-4 bg-white">
+				<h3 class="text-2xl text-blue-800 font-extrabold">
+					Twitter Feed
+				</h3>
+				<a class="twitter-timeline" href="https://twitter.com/ahl_properties?ref_src=twsrc%5Etfw">Tweets by ahl_properties</a>
+				<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</div>
+			<div class="h-[29rem] overflow-hidden p-4 bg-white sm:pl-6">
+				<h3 class="text-2xl text-blue-800 font-extrabold">
+					Facebook Feed
+				</h3>
+				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fahlproperties.ke&tabs=timeline&width=500&height=450&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=325855402643463" width="500" height="450" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+			</div>
+		</div>
+	</section>
+	<Cta client:load />
+</Layout>

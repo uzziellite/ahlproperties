@@ -1,0 +1,131 @@
+---
+import Layout from "@layouts/Layout.astro"
+import Cta from "@components/Cta.svelte"
+
+const { slug } = Astro.params
+
+let res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?slug=${slug}&_embed`)
+let post = await res.json()
+
+let url = Astro.request.url
+---
+
+<Layout title={post[0].title.rendered} description={post[0].acf.property_brief_description}>
+	<section class="container mx-auto p-4 mt-24">
+		<div class="grid lg:grid-cols-3 gap-2">
+			<div class="sm:col-span-2 bg-white shadow-md px-8">
+				<h2 class="text-4xl font-serif uppercase text-blue-800">
+					{post[0].title.rendered}
+				</h2>
+				<p class="text-lg pr-2">
+					{post[0].acf.property_brief_description}
+				</p>
+				<!-- Slider -->
+				<div class="mt-4 grid gap-4 -px-4">
+					<div class="swiper-container !overflow-hidden">
+				  	<div class="swiper-wrapper">
+				    	<div class="swiper-slide">
+				        <img alt="Nairobi" src="/images/banner-1.jpg" />
+					    </div>
+					    <div class="swiper-slide">
+				        <img alt="Beach" src="/images/banner-2.jpg" />
+					    </div>
+					  </div>
+					</div>
+				  <div class="swiper-pagination !relative !bottom-0 -mt-12"></div>
+
+					<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+					<link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
+					<script>
+					  document.addEventListener('DOMContentLoaded', function () {
+					    new Swiper('.swiper-container', {
+					      loop: true,
+					      slidesPerView: 1,
+					      spaceBetween: 8,
+					      autoplay: {
+					        delay: 2000,
+					      },
+					      pagination: {
+					        el: '.swiper-pagination',
+					        clickable: true,
+					      },
+					      breakpoints: {
+					        640: {
+					          slidesPerView: 1,
+					        },
+					        1024: {
+					          slidesPerView: 1,
+					        },
+					      }
+					    })
+					  })
+					</script>
+				</div>
+				<!-- End Slider -->
+			</div>
+			<div class="bg-white shadow-md">
+				<div class="bg-blue-800 p-2 text-white w-full">
+					<p class="text-center">{post[0].acf.property_size}</p>
+					<p class="text-center text-4xl font-serif">
+						{post[0].acf.property_price}
+					</p>
+				</div>
+				<p class="text-lg font-bold mt-2 ml-2">
+					Property Booking Fee: {post[0].acf.property_booking_fee}
+				</p>
+				<a href={`/purchase?property=${slug}`}>
+					<button class="bg-blue-800 p-2 text-white rounded-md ml-2 mt-4 font-semibold text-lg uppercase">
+						Purchase / Book Property
+					</button>
+				</a>
+				<p class="mt-4 text-lg text-gray-600 mx-2">
+					Are you interested in this property or wish to learn more? Call us
+				</p>
+				<div class="mt-2 flex space-x-4 ml-2">
+					<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+					<a href="tel:+254734990660">
+						0734 990 660
+					</a>
+				</div>
+				<p class="mt-4 text-lg text-gray-600 mx-2">
+					We also offer site visits
+				</p>
+				<a href="#cta" class="text-yellow-600 ml-2">
+					Click here to book a site visit
+				</a>
+				<h3 class="mt-6 text-xl ml-2 font-serif">
+					Share this product
+				</h3>
+				<div class="ml-2 mt-4 flex space-x-4">
+					<a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" title="Share on Facebook" class="flex items-center p-1 text-yellow-600">
+            <img src="/images/facebook.svg">
+          </a>
+          <a href={`https://twitter.com/intent/tweet?url=${url}`} target="_blank" title="Share on Twitter" class="flex items-center p-1 text-yellow-600">
+            <img src="/images/twitter.svg">
+          </a>
+          <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`} target="_blank" title="Share on Linkedin" class="flex items-center p-1 text-yellow-600">
+          	<img src="/images/linkedin.svg">
+          </a>
+          <a href={`https://api.whatsapp.com/send/?text=${post[0].title.rendered} - ${url}`} target="_blank" title="Share on Whatsapp" class="flex items-center p-1 text-yellow-600">
+          	<img src="/images/whatsapp.svg">
+          </a>
+				</div>
+			</div>
+		</div>
+		<div class="mt-2 p-2 bg-white shadow-md rounded-md grid sm:grid-cols-2 gap-2 divide-x">
+			<div class="mt-2">
+				<h3 class="text-4xl uppercase font-serif text-blue-800">
+					Key Features of Property
+				</h3>
+				<div class="prose" set:html={post[0].acf.property_key_features}></div>
+			</div>
+			<div class="mt-2 pl-2">
+				<h3 class="text-4xl uppercase font-serif text-blue-800">
+					How to buy this property
+				</h3>
+				<div class="prose" set:html={post[0].acf.purchase_instructions}></div>
+			</div>
+		</div>
+	</section>
+	<Cta client:load  />
+</Layout>

@@ -1,0 +1,52 @@
+---
+import Header from "@components/Header.svelte"
+import Footer from "@components/Footer.svelte"
+//import Whatsapp from "@components/Whatsapp.svelte"
+
+const {title} = Astro.props
+const {description} = Astro.props
+const {og_image} = Astro.props
+const {og_url} = Astro.props
+---
+<html lang="en-KE">
+  <head>
+    <title>{title}</title>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="/images/logo.png" />
+    <link rel="preconnect" href={import.meta.env.PUBLIC_CMS} crossorigin />
+    <meta name="robots" content="follow, index" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={og_image} />
+    <meta property="og:url" content={og_url} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
+    <style> @import url('https://fonts.googleapis.com/css2?family=Catamaran&display=swap'); </style>
+    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+    <style> @import url('https://fonts.googleapis.com/css2?family=Ultra&display=swap'); </style>
+  </head>
+  <body class="bg-gray-200">
+    <Header client:load />
+      <main>
+        <slot />
+      </main>
+    <Footer client:load />
+    <!--<Whatsapp client:load />-->
+  </body>
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/639996a8daff0e1306dc9770/1gk7v91lp';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
+</html>

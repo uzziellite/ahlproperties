@@ -1,0 +1,21 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Cta from '@components/Cta.svelte'
+
+const { slug } = Astro.params;
+
+let res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?slug=${slug}&_embed`)
+let post = await res.json()
+---
+
+<Layout title={post[0].title.rendered} description="">
+	<section class="bg-blue-800 h-[32em] w-full">
+		<h1 class="text-white text-4xl pt-72 text-center font-bold">
+			{post[0].title.rendered}
+		</h1>
+	</section>
+	<div class="grid place-items-center mt-6 mb-24">
+		<div class="prose prose-lg max-w-4xl" set:html={post[0].content.rendered}></div>
+	</div>
+	<Cta client:load />
+</Layout>

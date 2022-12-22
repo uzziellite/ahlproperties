@@ -1,0 +1,10 @@
+---
+import Layout from "@layouts/Layout.astro"
+
+const path = String(Astro.url)
+const property = path.split('=')
+---
+
+<Layout title={`${property[1].toUpperCase()} MAP`} description="">
+	
+</Layout>

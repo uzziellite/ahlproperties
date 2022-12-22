@@ -1,0 +1,51 @@
+---
+import Layout from "@layouts/Layout.astro"
+import ContactForm from "@components/ContactForm.svelte"
+import Cta from "@components/Cta.svelte"
+---
+
+<Layout title="Contact Us" description="Get in touch with us. We are available to answer all your questions about construction projects">
+	<section class="bg-blue-800 h-[36em] w-full bg-cover bg-opacity-80" style="background-image: url('/images/contact.jpg');">
+		<h1 class="text-white text-6xl pt-72 text-center font-bold uppercase">
+			Reach out to us
+		</h1>
+	</section>
+	<section class="py-6 mb-2 -mt-24 mb-24">
+		<div class="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x bg-gray-200 p-4 rounded-md bg-black bg-opacity-90" style="background-image: url('/images/Nairobi.jpg');">
+			<div class="py-6 md:py-0 md:px-6 text-white mt-6">
+				<h2 class="text-4xl mb-12 uppercase font-serif">
+					Get in touch
+				</h2>
+				<p class="pt-2 pb-4 text-xl mb-12">
+					Please contact us using the details below
+				</p>
+				<div class="space-y-4 mb-12">
+					<p class="flex items-center">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2 sm:mr-6">
+							<path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+						</svg>
+						<span>
+							P.O. Box: 66827 - 00800, Westlands<br>AHL Head Office  4th Floor,<br>  Chandarana Shopping Center, <br>Lavington Mall - James Gichuru Road,<br> Lavington, Westlands, <br> Nairobi, Kenya
+						</span>
+					</p>
+					<p class="flex items-center">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2 sm:mr-6">
+							<path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+						</svg>
+						<span>
+							<span class="uppercase">For General Enquiries</span><br>
+							Email:<a href="mailto:info@ahlproperties.co.ke" class="hover:underline">
+								info@ahlproperties.co.ke
+							</a><br> Call: 
+							<a href="tel:+254734990660" class="hover:underline">0734 990 660</a>
+							<br><span class="uppercase">For Sales Enquiries</span><br> Call: 
+							<a href="tel:+254734990660" class="hover:underline">0734 990 660</a>
+						</span>
+					</p>
+				</div>
+			</div>
+			<ContactForm client:load />
+		</div>
+	</section>
+	<Cta client:load  />
+</Layout>

@@ -1,0 +1,68 @@
+---
+import Layout from "@layouts/Layout.astro"
+import Cta from "@components/Cta.svelte"
+---
+
+<Layout title="Our Gallery" description="">
+	<section class="bg-blue-800 h-[36em] w-full bg-no-repeat bg-black bg-opacity-80" style="background-image: url('/images/Nairobi.jpg');">
+		<h1 class="text-white text-6xl pt-72 text-center font-bold uppercase">
+			Our Gallery
+		</h1>
+	</section>
+	<section class="py-6 mb-2 -mt-24 container mx-auto bg-white rounded-md shadow-lg">
+		<div class="mt-4 grid gap-4 p-6 relative">
+			<div class="swiper-container !overflow-hidden">
+		  	<div class="swiper-wrapper">
+		    	<div class="swiper-slide">
+		        <img alt="Nairobi" src="/images/Nairobi.jpg" class="aspect-square" />
+			    </div>
+			    <div class="swiper-slide">
+		        <img alt="Beach" src="/images/sample-1.jpg" class="aspect-square" />
+			    </div>
+			    <div class="swiper-slide">
+		        <img alt="Beach" src="/images/sample-1.jpg" class="aspect-square" />
+			    </div>
+			    <div class="swiper-slide">
+		        <img alt="Beach" src="/images/sample-1.jpg" class="aspect-square" />
+			    </div>
+			  </div>
+			</div>
+		  <div class="swiper-pagination !relative !bottom-0 -mt-12"></div>
+		  <!-- If we need navigation buttons -->
+		  <div class="swiper-button-prev absolute pl-12"></div>
+		  <div class="swiper-button-next absolute pr-12"></div>
+
+			<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+			<link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
+			<script>
+			  document.addEventListener('DOMContentLoaded', function () {
+			    new Swiper('.swiper-container', {
+			      loop: true,
+			      slidesPerView: 1,
+			      spaceBetween: 8,
+			      navigation: {
+					    nextEl: '.swiper-button-next',
+					    prevEl: '.swiper-button-prev',
+					  },
+			      autoplay: {
+			        delay: 2000,
+			      },
+			      pagination: {
+			        el: '.swiper-pagination',
+			        clickable: true,
+			      },
+			      breakpoints: {
+			        640: {
+			          slidesPerView: 1.5,
+			        },
+			        1024: {
+			          slidesPerView: 3,
+			        },
+			      }
+			    })
+			  })
+			</script>
+		</div>
+	</section>
+	<Cta client:load  />
+</Layout>

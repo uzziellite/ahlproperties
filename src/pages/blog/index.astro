@@ -1,0 +1,36 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Cta from "@components/Cta.svelte"
+
+//Load blogs
+const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=3&_embed&per_page=20`)
+const data = await res.json()
+---
+
+<Layout title="Blog" description="">
+	<section class="container max-w-6xl p-6 mx-auto mt-32">
+		<div class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				data.map((item) => (
+					<a href={`/blog/${item.slug}`} class="max-w-sm mx-auto group hover:no-underline focus:no-underline">
+						<div class="relative">
+							<img role="presentation" class="object-cover w-full rounded h-44" src={item._embedded["wp:featuredmedia"] ? item._embedded["wp:featuredmedia"][0].media_details.sizes.medium.source_url : ''} />
+							<p class="absolute bg-black bg-opacity-80 bottom-1 text-white p-2">
+								Post written by: {item['_embedded'].author[0].name}
+							</p>
+						</div>
+						<div class="space-y-2">
+							<h3 class="text-2xl font-serif font-light group-hover:underline group-focus:underline">{item.title.rendered}</h3>
+							<span class="text-xs">{item.date_gmt}</span>
+							<span set:html={item.excerpt.rendered}></span>
+						</div>
+					</a>
+				))
+			}
+		</div>
+		<!--<div class="flex justify-center">
+			<button type="button" class="px-6 py-3 text-sm rounded-md hover:underline bg-blue-800 text-white">Load more posts...</button>
+		</div>-->
+	</section>
+	<Cta client:load  />
+</Layout>
