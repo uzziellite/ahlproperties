@@ -15,6 +15,8 @@
 
 	canvas.addEventListener('click',(e) => {
 		console.log(`The X Coordinate clicked is: ${x} and Y coordinate is ${y}`)
+		localStorage.setItem('land',2116)
+		window.location.href = '/purchase/details'
 	})
 
 	const updateCanvas = () => {

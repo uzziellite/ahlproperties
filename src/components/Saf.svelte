@@ -80,6 +80,10 @@
 			dp = ipf.downpayment
 			pp = ipf.paymentplan
 		}
+
+		if(localStorage.getItem('land')){
+			property = localStorage.getItem('land')
+		}
 	}
 
 	onMount(() => {

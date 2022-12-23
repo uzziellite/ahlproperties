@@ -14,7 +14,7 @@
         <a href="/" class="flex transition hover:scale-110">
           <span class="sr-only">{name}</span>
           <img class="h-8 w-auto sm:h-12 mt-2" src="/images/ahl-logo-3.png" alt={name}>
-          <span class="font-serif text-blue-900 my-2 lg:text-3xl uppercase">
+          <span class="font-serif text-blue-800 my-3 lg:text-2xl hidden lg:block uppercase">
             Properties
           </span>
         </a>
