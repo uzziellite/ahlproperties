@@ -1,10 +1,30 @@
 ---
 import Layout from "@layouts/Layout.astro"
+import MapCanvas from "@components/MapCanvas.svelte"
 
 const path = String(Astro.url)
 const property = path.split('=')
 ---
 
 <Layout title={`${property[1].toUpperCase()} MAP`} description="">
-	
+	<section class="container mx-auto mt-24">
+		<h2 class="capitalize font-serif text-center uppercase text-4xl text-blue-800">
+			{property[1]} Property Map
+		</h2>
+		<div class="grid place-content-center">
+			<p class="text-xl text-gray-700 lg:max-w-4xl">
+				You can never go wrong with AHL properties. Real value for your money is what we are about. It is not simply vacant land, it’s land with breathtaking views and great appreciation rates. Something you can build on your retirement home, build several Airbnb, resell at a greater value, and so much more.
+				Once you have selected the plot you desire, we give our clients the opportunity to hold on to the property for the next 12 hours before making a down payment or deposit. If a property is on hold, you can still select it. You will be notified if the plot gets sold out or it is still available. After the elapse of 12 hours, you will be given a notification. 
+
+			</p>
+		</div>
+		<!-- Where we shall put the map canvas -->
+		<canvas 
+			id="canvas" 
+			class="overflow-hidden overflow-scroll border-none" 
+			width="600" 
+			height="560">		
+		</canvas>
+		<MapCanvas client:only />
+	</section>
 </Layout>

@@ -5,7 +5,7 @@ const path = String(Astro.url)
 const property = path.split('=')
 
 //Load purchase process
-const details = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=12`)
+const details = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=12&order=asc`)
 const details_data = await details.json()
 ---
 

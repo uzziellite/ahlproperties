@@ -3,7 +3,8 @@ import tailwind from '@astrojs/tailwind';
 import svelte from '@astrojs/svelte';
 import sitemap from '@astrojs/sitemap';
 import prefetch from '@astrojs/prefetch';
-import node from '@astrojs/node';
+//import node from '@astrojs/node';
+import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,7 +16,8 @@ export default defineConfig({
 		prefetch()
 	],
 	output:"server",
-	adapter: node({
+	/*adapter: node({
     mode: 'standalone'
-  })
+  })*/
+  adapter:vercel()
 });
