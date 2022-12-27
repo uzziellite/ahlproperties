@@ -3,7 +3,7 @@ import Layout from '@layouts/Layout.astro'
 import Cta from "@components/Cta.svelte"
 
 //Load blogs
-const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=3&_embed&per_page=20`)
+const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=3&_embed&per_page=20&sort=desc`)
 const data = await res.json()
 ---
 

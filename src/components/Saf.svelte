@@ -82,7 +82,7 @@
 		}
 
 		if(localStorage.getItem('land')){
-			property = localStorage.getItem('land')
+			property = JSON.parse(localStorage.getItem('land')).plot
 		}
 	}
 
@@ -169,7 +169,7 @@
 	  </label>
 	  <label class="block">
 	    <span class="mb-1">For installment plan, indicate the amount you are willing to pay every month</span>
-	    <input type="number" placeholder="150,000" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={monthlyPayment} required>
+	    <input type="number" placeholder="150,000" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={monthlyPayment} required={pp === 'Cash: KSH 550,000' ? false : true}>
 	  </label>
 	  <label class="block">
 	    <span class="mb-1">Due Date</span>

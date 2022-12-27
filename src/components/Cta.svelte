@@ -41,25 +41,25 @@
         </p>
       </div>
     </div>
-    <div class="sm:pl-16">
-      <form class="flex flex-col py-6 space-y-6 md:py-0 md:px-6 bg-white bg-opacity-60 shadow-lg rounded-lg mt-12 sm:max-w-md transition hover:scale-90" on:submit|preventDefault={() => book()}>
+    <div class="sm:pl-16 p-4 sm:p-0">
+      <form class="flex flex-col px-4 sm:px-0 py-6 space-y-6 md:py-0 md:px-6 bg-black sm:bg-white bg-opacity-60 shadow-lg rounded-lg mt-12 sm:max-w-md transition hover:scale-90" on:submit|preventDefault={() => book()}>
         <span class="bg-blue-800 p-4 -mt-4 sm:-mt-3 text-white text-xl font-bold rounded-md uppercase font-extrabold">
           Book Site Visit
         </span>
         <label class="block">
-          <span class="mb-1">Full name</span>
+          <span class="mb-1 text-white sm:text-black">Full name</span>
           <input type="text" placeholder="Leroy Jenkins" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={name} required>
         </label>
         <label class="block">
-          <span class="mb-1">Phone Number</span>
+          <span class="mb-1 text-white sm:text-black">Phone Number</span>
           <input type="text" placeholder="0712345678" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={phone} required>
         </label>
         <label class="block">
-          <span class="mb-1">Email address</span>
+          <span class="mb-1 text-white sm:text-black">Email address</span>
           <input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required>
         </label>
         <label class="block">
-          <span class="mb-1">Date</span>
+          <span class="mb-1 text-white sm:text-black">Date</span>
           <input type="date" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={date} min={min_date} required>
         </label>
         {#if !report}
