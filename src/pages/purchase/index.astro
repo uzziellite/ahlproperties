@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro"
+import Cta from "@components/Cta.svelte"
 
 const path = String(Astro.url)
 const property = path.split('=')
@@ -42,4 +43,5 @@ const details_data = await details.json()
 	    </a>
 		</div>
 	</section>
+	<Cta client:load />
 </Layout>

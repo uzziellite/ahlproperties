@@ -165,10 +165,10 @@
 		//allow clicks at the text label since it has a definite shape
 		const db = {}
 		db.label = number
-		db.xMax = Number(clickCoordinates[0]) + 20
-		db.xMin = Number(clickCoordinates[0]) - 20
-		db.yMax = Number(clickCoordinates[1]) + 20
-		db.yMin = Number(clickCoordinates[1]) - 20
+		db.xMax = Number(clickCoordinates[0]) + 50
+		db.xMin = Number(clickCoordinates[0]) - 50
+		db.yMax = Number(clickCoordinates[1]) + 50
+		db.yMin = Number(clickCoordinates[1]) - 50
 		db.status = status
 
 		store.push(db)
@@ -194,7 +194,12 @@
 			ctx.fillStyle = 'black'
 		}
 
-		ctx.fillText(number,coordinates[0],coordinates[1])
+		if(coordinates.length == 3){
+			ctx.fillText(coordinates[2],coordinates[0],coordinates[1])
+		}else{
+			ctx.fillText(number,coordinates[0],coordinates[1])
+		}
+
 	}
 
 	const canvasUpdater = () => {
@@ -285,6 +290,7 @@
 		ctx.fillText('TOTAL AREA (A)',51,142)
 		ctx.fillText('1 Acres / 0.405 HA',51,196)
 		ctx.fillText('Road 6M Wide',350,365)
+		ctx.fillStyle = 'black'
 		ctx.fillText('Total Area (A) 4.25 Acres / 1.6555 HA',382,628)
 
 		generateMapKey()

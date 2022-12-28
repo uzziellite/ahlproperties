@@ -1,6 +1,10 @@
 ---
 import Layout from "@layouts/Layout.astro"
 import Cta from "@components/Cta.svelte"
+
+const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=5&per_page=100&_fields=acf&tags=7`)
+const data = await res.json()
+const images = data[0].acf.images.split(",")
 ---
 
 <Layout title="Our Gallery" description="">
@@ -13,18 +17,11 @@ import Cta from "@components/Cta.svelte"
 		<div class="mt-4 grid gap-4 p-6 relative">
 			<div class="swiper-container !overflow-hidden">
 		  	<div class="swiper-wrapper">
-		    	<div class="swiper-slide">
-		        <img alt="Nairobi" src="/images/Nairobi.jpg" class="aspect-square" />
-			    </div>
-			    <div class="swiper-slide">
-		        <img alt="Beach" src="/images/sample-1.jpg" class="aspect-square" />
-			    </div>
-			    <div class="swiper-slide">
-		        <img alt="Beach" src="/images/sample-1.jpg" class="aspect-square" />
-			    </div>
-			    <div class="swiper-slide">
-		        <img alt="Beach" src="/images/sample-1.jpg" class="aspect-square" />
-			    </div>
+		  		{
+		  			images.map((item) => (
+				    	<div class="swiper-slide" set:html={item}></div>
+		  			))
+		  		}
 			  </div>
 			</div>
 		  <div class="swiper-pagination !relative !bottom-0 -mt-12"></div>
@@ -66,3 +63,9 @@ import Cta from "@components/Cta.svelte"
 	</section>
 	<Cta client:load  />
 </Layout>
+
+<style type="text/css">
+	.swiper-button-prev,.swiper-button-next{
+		color: white !important;
+	}
+</style>

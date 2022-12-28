@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro"
 import SalesAgreementForm from "@components/Saf.svelte"
+import Cta from "@components/Cta.svelte"
 ---
 
 <Layout title="Client Details" description="">
@@ -15,4 +16,5 @@ import SalesAgreementForm from "@components/Saf.svelte"
 			<SalesAgreementForm client:load />
 		</div>
 	</section>
+	<Cta client:load />
 </Layout>

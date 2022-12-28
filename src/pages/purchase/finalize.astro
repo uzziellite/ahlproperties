@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro"
+import Cta from "@components/Cta.svelte"
 ---
 
 <Layout title="Finalize sales process" description="">
@@ -16,4 +17,5 @@ import Layout from "@layouts/Layout.astro"
 			<a href="/" class="p-2 bg-blue-800 text-lg text-white text-center mt-6">Complete Process</a>
 		</div>
 	</section>
+	<Cta client:load />
 </Layout>

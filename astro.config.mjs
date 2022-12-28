@@ -8,11 +8,23 @@ import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
-	site:'https://ahlproperties.co.ke',
+	site:'https://www.ahlproperties.co.ke',
 	integrations:[
 		tailwind(),
 		svelte(),
-		sitemap(),
+		sitemap({
+			customPages:[
+				'https://www.ahlproperties.co.ke/',
+				'https://www.ahlproperties.co.ke/about',
+				'https://www.ahlproperties.co.ke/properties',
+				'https://www.ahlproperties.co.ke/blog',
+				'https://www.ahlproperties.co.ke/videos',
+				'https://www.ahlproperties.co.ke/gallery',
+				'https://www.ahlproperties.co.ke/contact',
+				'https://www.ahlproperties.co.ke/help',
+				'https://www.ahlproperties.co.ke/reviews'
+			]
+		}),
 		prefetch()
 	],
 	output:"server",
