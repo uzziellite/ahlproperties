@@ -7,7 +7,7 @@ module.exports = {
   ],
   theme:{
     fontFamily:{
-      'sans':['Catamaran','system-ui'],
+      'sans':['Poppins','system-ui'],
       'serif':['Ultra','system-ui']
     }
   }

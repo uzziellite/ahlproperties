@@ -1,25 +1,19 @@
 <script>
 	import {onMount} from "svelte"
 	import axios from "axios"
+	import Swal from "sweetalert"
 	
 	//Details form
 	let name
 	let phone
 	let email
-	let id
-	let address
+	let plot
+	//let id
+	//let address
 	let user
 	let onHold = false
 	const prev = localStorage.getItem('prev')
 	let message
-
-	//Check if property is on hold
-	if(localStorage.getItem('land')){
-		const type = JSON.parse(localStorage.getItem('land'))
-		if (type.status == 'On hold') {
-			onHold = true
-		}
-	}
 
 	//Save the data locally for use later
 	const saveDetails = async () => {
@@ -29,19 +23,15 @@
 			name: name,
 			phone: phone,
 			email: email,
-			id: id,
-			address: address
+			//id: id,
+			//address: address
 		}
 
 		const user_string = await JSON.stringify(user)
 
 		localStorage.setItem('user',user_string)
 
-		if (onHold) {
-			setCronJob()
-		}else{
-			window.location.href = '/purchase/ipf'
-		}
+		sendEmail()
 	}
 
 	// If the user had filled the data previously
@@ -51,18 +41,35 @@
 			name = user.name
 			phone = user.phone
 			email = user.email
-			id = user.id
-			address = user.address
+			//id = user.id
+			//address = user.address
+		}
+
+		if(localStorage.getItem('land')){
+			const type = JSON.parse(localStorage.getItem('land'))
+			if (type.status == 'On hold') {
+				onHold = true
+			}
+
+			plot = type.plot
 		}
 	}
 
-	const setCronJob = () => {
-		axios.post('/plotcron',{
-			user
+	const sendEmail = () => {
+		axios.post('/detailsmail',{
+			name,
+			phone,
+			email,
+			plot
 		}).then(() => {
-			message = 'You will be notified of plot availability after 12 hours'
+			window.location.href = '/purchase/ipf'
 		}).catch((error) => {
-			console.error('Unable to set reminder')
+			console.log(error)
+			Swal({
+			  title: "Error",
+			  text: `Unable to save details to the server at the moment. Your data is saved locally. Please try again`,
+			  icon: "error"
+			})
 		})
 	}
 
@@ -91,14 +98,14 @@
     <span class="mb-1">Email address</span>
     <input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required>
   </label>
-  <label class="block">
+  <!--<label class="block">
     <span class="mb-1">Identification Number</span>
     <input type="text" placeholder="12345678" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={id} required>
   </label>
   <label class="block">
     <span class="mb-1">Address</span>
     <input type="text" placeholder="123 ABC Place, Chriromo Lane, Riverside Nairobi" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={address} required>
-  </label>
+  </label>-->
   {#if typeof message === 'undefined'}
 	  <div class="my-4">
 	    <button type="submit" class="px-8 py-3 w-32 my-6 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 focus:ring-indigo-400 hover:ring-indigo-400 bg-blue-800 text-white">Submit</button>

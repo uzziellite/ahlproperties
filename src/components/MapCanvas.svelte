@@ -1,4 +1,5 @@
 <script>
+	import Swal from 'sweetalert'
 	//Get the property prop from Astro
 	export let property
 	
@@ -241,7 +242,7 @@
 		ctx.fillText('Road 6M wide',533,89)
 		ctx.fillStyle = 'black'
 		ctx.font = '32px Tahoma'
-		ctx.fillText('Total Area (A) 4.091 Acres / 1.6555 HA',225,480)
+		//ctx.fillText('Map not drawn to scale',225,480)
 
 		generateMapKey()
 		//drawMap(ctx,status,coordinates,number,type,textcdnts)
@@ -291,7 +292,7 @@
 		ctx.fillText('1 Acres / 0.405 HA',51,196)
 		ctx.fillText('Road 6M Wide',350,365)
 		ctx.fillStyle = 'black'
-		ctx.fillText('Total Area (A) 4.25 Acres / 1.6555 HA',382,628)
+		//ctx.fillText('Total Area (A) 4.25 Acres / 1.6555 HA',382,628)
 
 		generateMapKey()
 		//drawMap(ctx,status,coordinates,number,type,textcdnts)
@@ -312,12 +313,24 @@
 		store.every((item) => {
 			if(x <= item.xMax && x >= item.xMin && y <= item.yMax && y >= item.yMin){
 				if(item.status === 'Sold'){
-					alert(`Sorry, plot number ${item.label} is already taken and can not be sold to another client`)
+					swal({
+					  title: "Plot already sold",
+					  text: `Sorry, plot number ${item.label} is already taken and can not be sold to another client`,
+					  icon: "warning"
+					})
 				}else{
 					localStorage.setItem('land',JSON.stringify({"plot":item.label,"status":item.status}))
 					localStorage.setItem('prev', window.location.href)
-					alert(`Congratulations for selecting plot ${item.label}. Complete the purchase process now`)
-					window.location.href = '/purchase/details'
+					
+					swal({
+					  title: "Congratulations",
+					  text: `You have succesfully selected plot number ${item.label}. Complete the purchase process now`,
+					  icon: "success"
+					})
+					.then((willDelete) => {
+						window.location.href = '/purchase/details'
+					})
+
 					return true
 				}
 				//For loop to continue

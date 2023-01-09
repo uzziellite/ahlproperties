@@ -1,0 +1,34 @@
+---
+import Layout from "@layouts/Layout.astro"
+import Cta from "@components/Cta.svelte"
+
+//Load Team
+const team = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=13&_embed&order=asc`)
+const team_data = await team.json()
+---
+
+<Layout title="Meet our team" description="Our team at AHL properties is composed of hardworking individuals who are willing to assist in purchasing property anywhere in Kenya">
+	<section class="container mx-auto mb-4 p-2 rounded-lg mt-24">
+		<div class="">
+			<h1 class="text-2xl leading-none sm:text-5xl text-blue-800 text-center uppercase my-4">Meet our team</h1>
+			<div class="grid w-full grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+				{
+					team_data.map((item) => (
+						<div class="space-y-4 border border-2 hover:border-yellow-600 transition hover:scale-90 hover:skew-2 p-2 bg-white">
+							<img alt={item.acf.name} class="object-cover h-56 mx-auto mb-4 bg-center rounded-sm" src={item._embedded["wp:featuredmedia"][0].source_url} />
+							<div class="flex flex-col items-center" >
+								<h4 class="text-xl font-semibold">
+									{item.acf.name}
+								</h4>
+								<p class="text-sm">
+									{item.acf.role}
+								</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+	<Cta client:load />
+</Layout>

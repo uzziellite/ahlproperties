@@ -8,7 +8,7 @@
   let loading = false
   let report
   let error
-  let min_date = new Date().toISOString().split("T")[0]
+  //let min_date = new Date().toISOString().split("T")[0]
 
   const book = () => {
     loading = true
@@ -58,10 +58,10 @@
           <span class="mb-1 text-white sm:text-black">Email address</span>
           <input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required>
         </label>
-        <label class="block">
+        <!--<label class="block">
           <span class="mb-1 text-white sm:text-black">Date</span>
           <input type="date" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={date} min={min_date} required>
-        </label>
+        </label>-->
         {#if !report}
           {#if loading}
             <div class="my-4">

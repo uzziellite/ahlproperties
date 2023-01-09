@@ -11,10 +11,10 @@ let url = Astro.request.url
 ---
 
 <Layout title={post[0].title.rendered} description={post[0].acf.property_brief_description}>
-	<section class="container mx-auto p-4 mt-16">
+	<section class="container mx-auto p-4 mt-24">
 		<div class="grid lg:grid-cols-3 gap-2">
 			<div class="sm:col-span-2 bg-white shadow-md px-8">
-				<h2 class="text-4xl font-serif uppercase text-blue-800">
+				<h2 class="text-4xl font-serif uppercase text-blue-800 mt-2 mb-6">
 					{post[0].title.rendered}
 				</h2>
 				<p class="text-lg pr-2">
@@ -64,7 +64,7 @@ let url = Astro.request.url
 				<!-- End Slider -->
 			</div>
 			<div class="bg-white shadow-md">
-				<div class="bg-blue-800 p-2 text-white w-full">
+				<div class="p-2 w-full bg-white shadow-xl">
 					<p class="text-center">{post[0].acf.property_size}</p>
 					<p class="text-center text-4xl font-serif">
 						{post[0].acf.property_price}
@@ -74,7 +74,7 @@ let url = Astro.request.url
 					Property Booking Fee: {post[0].acf.property_booking_fee}
 				</p>
 				<a href={`/purchase?property=${slug}`}>
-					<button class="bg-blue-800 p-2 text-white rounded-md ml-2 mt-4 font-semibold text-lg uppercase">
+					<button class="bg-yellow-600 p-2 text-white rounded-md ml-2 mt-4 font-semibold text-lg uppercase">
 						Purchase / Book Property
 					</button>
 				</a>
@@ -90,7 +90,7 @@ let url = Astro.request.url
 				<p class="mt-4 text-lg text-gray-600 mx-2">
 					We also offer site visits
 				</p>
-				<a href="#cta" class="text-yellow-600 ml-2">
+				<a href="#cta" class="text-red-600 font-bold ml-2 uppercase">
 					Click here to book a site visit
 				</a>
 				<h3 class="mt-6 text-xl ml-2 font-serif">

@@ -9,14 +9,10 @@ const data = await res.json()
 //Load single blog
 const blog = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts/6?_embed`)
 const blog_data = await blog.json()
-
-//Load Team
-const team = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=13&_embed&order=asc`)
-const team_data = await team.json()
 ---
 
 <Layout title="About Us" description="">
-	<section class="bg-blue-800 h-[36em] w-full bg-cover bg-black bg-opacity-80" style="background-image: url('/images/about.jpg');">
+	<section class="bg-blue-800 h-[36em] w-full bg-cover bg-black bg-opacity-80" style="background-image: url('/images/mountain.jpg');">
 		<h1 class="text-white text-6xl pt-64 text-center uppercase font-serif">
 			About Us
 		</h1>
@@ -133,28 +129,6 @@ const team_data = await team.json()
 			</h2>
 			<div class="mt-4 prose" set:html={data[0].content.rendered}></div>
 		</article>
-	</section>
-	<section class="container mx-auto mb-4 bg-white p-2 shadow-lg rounded-lg">
-		<div class="space-y-16">
-			<h3 class="text-2xl leading-none sm:text-5xl text-blue-800 text-center uppercase font-serif">Meet our team</h3>
-			<div class="grid w-full grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-				{
-					team_data.map((item) => (
-						<div class="space-y-4 border border-2 hover:border-yellow-600 transition hover:scale-90 hover:skew-2 p-2">
-							<img alt={item.acf.name} class="object-cover h-56 mx-auto mb-4 bg-center rounded-sm" src={item._embedded["wp:featuredmedia"][0].source_url} />
-							<div class="flex flex-col items-center" >
-								<h4 class="text-xl font-semibold">
-									{item.acf.name}
-								</h4>
-								<p class="text-sm">
-									{item.acf.role}
-								</p>
-							</div>
-						</div>
-					))
-				}
-			</div>
-		</div>
 	</section>
 	<Cta client:load  />
 </Layout>

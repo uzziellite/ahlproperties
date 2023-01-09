@@ -29,6 +29,9 @@
           <li>
             <a href="/reviews">Reviews</a>
           </li>
+          <li>
+            <a href="/team">Our Team</a>
+          </li>
         </ul>
       </div>
       <div>
@@ -36,7 +39,7 @@
           Contact Us
         </h2>
         <p class="mb-4">
-          <a href="mailto:info@ahlproperties.com" class="hover:underline">info@ahlproperties.com</a><br><br><a href="tel:+254734990660" class="hover:underline">0734 990 660</a> <br><br> Visit Our office at<br> Lavington Mall,<br> Chandarana Shopping Center,<br> 4<sup>th</sup> Floor <br> James Gichuru Road
+          <a href="mailto:info@ahlproperties.com" class="hover:underline">info@ahlproperties.com</a><br><br><a href="tel:+254734990660" class="hover:underline">0734 990 660</a> <br><br>P.O.Box 311 - 00623<br> AHL Properties, Head Office,<br> 4<sup>th</sup> Floor, Lavington Mall,<br> Close to Chandarana Shopping Center<br> James Gichuru Road,<br> Lavington
 
         </p>
         <div class="flex space-x-3 lg:space-x-0 lg:flex-col lg:right-0 lg:fixed lg:space-y-3" style="top: 30%;">
@@ -49,7 +52,7 @@
           <a href="https://instagram.com/ahlproperties.ke" title="Instagram" class="flex items-center p-1 text-yellow-600" target="_blank">
             <img src="/images/instagram.svg">
           </a>
-          <a href="https://youtu.be/nTZQ2ref1jg" title="Youtube" class="flex items-center p-1 text-yellow-600" target="_blank">
+          <a href="https://www.youtube.com/@ahlproperties7311" title="Youtube" class="flex items-center p-1 text-yellow-600" target="_blank">
             <img src="/images/youtube.svg">
           </a>
           <a href="https://web.whatsapp.com/send?phone=254734990660" title="Whatsapp" class="flex items-center p-1 text-yellow-600" target="_blank">

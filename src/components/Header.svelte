@@ -13,10 +13,7 @@
       <div class="flex justify-start lg:w-0 lg:flex-1">
         <a href="/" class="flex transition hover:scale-110">
           <span class="sr-only">{name}</span>
-          <img class="h-8 w-auto sm:h-12 mt-2" src="/images/ahl-logo-3.png" alt={name}>
-          <span class="font-serif text-blue-800 my-3 lg:text-2xl hidden lg:block uppercase">
-            Properties
-          </span>
+          <img class="h-12 w-auto sm:h-[75px] mt-2" src="/images/logo.png" alt={name}>
         </a>
       </div>
       <div class="-my-2 -mr-2 md:hidden">
