@@ -9,7 +9,7 @@ export const post = async ({ request }) => {
 
   const report = `<p>${message}</p><br><br><p>My name is ${name}.`
 
-  sendmail(report,subject,email,name).catch((error) => {
+  await sendmail(report,subject,email,name).catch((error) => {
     console.error(`Unable to send email: ${error}`)
   })
   

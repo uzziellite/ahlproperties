@@ -1,0 +1,20 @@
+---
+import Layout from "@layouts/Layout.astro"
+import InfoForm from "@components/InfoForm.svelte"
+import Cta from "@components/Cta.svelte"
+---
+
+<Layout title="Client Details" description="">
+	<section class="container mx-auto mt-24">
+		<h2 class="capitalize font-serif text-center uppercase text-4xl text-blue-800">
+			Complete the purchasing process
+		</h2>
+		<div class="grid place-content-center gap-2 p-4">
+			<p class="text-xl text-gray-700 lg:max-w-4xl">
+				Property is now on hold for the next 24 hours
+			</p>
+			<InfoForm client:load />
+		</div>
+	</section>
+	<Cta client:load />
+</Layout>

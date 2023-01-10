@@ -10,7 +10,7 @@ export const post = async ({ request }) => {
 
   const report = `<p>Hello, my name is ${name} and I want to book a site visit. My phone number is ${phone} and you can contact me with further instructions on how to proceed.</p><br><br><p>Thank you.</p>`
 
-  sendmail(report,subject,email,name).catch((error) => {
+  await sendmail(report,subject,email,name).catch((error) => {
     console.error(`Unable to send email: ${error}`)
   })
   

@@ -9,24 +9,33 @@
 
 
 	const paymentDetails = () => {
-		localStorage.removeItem('ipf')
 
-		const ipf = {
-			downpayment: dp,
-			paymentplan: pp
+		if (typeof pp != 'undefined') {
+			localStorage.removeItem('ipf')
+
+			const ipf = {
+				downpayment: dp,
+				paymentplan: pp
+			}
+
+			const ipf_data = JSON.stringify(ipf)
+
+			localStorage.setItem('ipf',ipf_data)
+
+			Swal({
+				title:"Congratulations",
+				text:"You have successfully set your desired payment methods",
+				icon:"success"
+			}).then(() => {
+				window.location.href = '/purchase/holding'
+			})
+		}else{
+			Swal({
+				title:"Incomplete",
+				text:"Please complete filling the payment details before submitting the form",
+				icon:"warning"
+			})
 		}
-
-		const ipf_data = JSON.stringify(ipf)
-
-		localStorage.setItem('ipf',ipf_data)
-
-		Swal({
-			title:"Congratulations",
-			text:"You have successfully set your desired payment methods",
-			icon:"success"
-		}).then(() => {
-			window.location.href = '/purchase/saf'
-		})
 	}
 
 	const loadPaymentDetails = async () => {

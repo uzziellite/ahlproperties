@@ -7,8 +7,8 @@ export async function sendmail(message,subject,from,name) {
     port: 465,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "no-reply@ahlproperties.co.ke", // Email account
-      pass: "f1];q;7HR.ga", // password
+      user: import.meta.env.PUBLIC_MAIL_ACCOUNT, // Email account
+      pass: import.meta.env.PUBLIC_MAIL_PASS, // password
     }
   })
 
