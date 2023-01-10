@@ -25,10 +25,10 @@
 	//Get the plots from the database
 	const loadPlots = async () => {
 		if(property === 'marafiki-residence'){
-			const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=14&per_page=100&_fields=acf&tags=15`)
+			const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=14&per_page=100&_fields=acf&tags=15`,{cache: 'no-store'})
 			data = await res.json()
     }else if(property === 'marafiki-homes'){
-    	const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=14&per_page=100&_fields=acf&tags=16`)
+    	const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=14&per_page=100&_fields=acf&tags=16`,{cache: 'no-store'})
 			data = await res.json()
     }else{
     	alert("Unknown property, Unable to fetch data")
