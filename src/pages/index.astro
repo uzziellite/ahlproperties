@@ -72,26 +72,26 @@ const property_data = await properties.json()
 		<h2 class="text-center text-4xl font-serif uppercase text-blue-800">
 			On going projects
 		</h2>
-		<div class="mt-4 grid sm:grid-cols-2 gap-4">
+		<div class="mt-4 grid sm:grid-cols-2 gap-4 divide-x-2">
 			{
 				property_data.map((item) => (
-					<a href={`/properties/${item.slug}`} class="block rounded-lg p-4 bg-white shadow-sm transition sm:hover:scale-90">
+					<a href={`/properties/${item.slug}`} class="block rounded-lg p-4 bg-white shadow-sm">
 					  <img alt={item.acf.property_name} src={item._embedded["wp:featuredmedia"][0].media_details.sizes.large.source_url} class="h-56 w-full rounded-md object-cover" />
-					  <p class="text-lg text-center mt-2 text-blue-800 font-semibold">
+					  <p class="text-xl text-center mt-2 uppercase text-blue-800">
 					  	{item.acf.property_location}
 					  </p>
-					  <h2 class="text-2xl text-center mt-2 uppercase text-blue-800 font-extrabold">
+					  <h2 class="text-4xl text-center mt-2 uppercase text-blue-800">
 					  	{item.acf.property_name}
 					  </h2>
 					  <p class="text-gray-600 mt-2">
 					  	{item.acf.property_brief_description}
 					  </p>
-					  <div class="grid grid-cols-2 gap-4">
+					  <div class="grid grid-cols-2 gap-4 divide-x-2">
 					  	<div class="flex flex-col">
 					  		<p class="text-gray-600 mt-2 text-lg uppercase text-center">
 					  			Total Cost
 					  		</p>
-					  		<button class="p-2 text-white bg-yellow-600">
+					  		<button class="p-2 font-black">
 					  			{item.acf.property_price}
 					  		</button>
 					  	</div>
@@ -99,10 +99,11 @@ const property_data = await properties.json()
 					  		<p class="text-gray-600 mt-2 text-lg uppercase text-center">
 					  			Booking Fee
 					  		</p>
-					  		<button class="p-2 text-white bg-blue-800">
+					  		<button class="p-2 font-black">
 					  			{item.acf.property_booking_fee}
 					  		</button>
 					  	</div>
+					  	<button class="bg-yellow-600 p-2 text-white col-span-2">View Property</button>
 					  </div>
 					</a>
 				))
