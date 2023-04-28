@@ -11,7 +11,7 @@ const blog = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts/6?_em
 const blog_data = await blog.json()
 ---
 
-<Layout title="About Us" description="">
+<Layout title="About Us - AHL Properties" description="">
 	<section class="bg-blue-800 h-[36em] w-full bg-cover bg-black bg-opacity-80" style="background-image: url('/images/mountain.jpg');">
 		<h1 class="text-white text-6xl pt-64 text-center uppercase font-serif">
 			About Us
@@ -67,7 +67,7 @@ const blog_data = await blog.json()
 		  <div class="hidden sm:block sm:basis-56">
 		    <img
 		      alt={blog_data.title.rendered}
-		      src={blog_data["_embedded"]["wp:featuredmedia"][0].media_details.sizes.medium.source_url}
+		      src={blog_data["_embedded"]["wp:featuredmedia"][0].media_details.sizes.large.source_url}
 		      class="aspect-square h-full w-full object-cover"
 		    />
 		  </div>
@@ -97,25 +97,25 @@ const blog_data = await blog.json()
 	<section class="py-6 mt-2 container mx-auto">
 		<div class="grid sm:grid-cols-2 gap-6">
 			<div class="bg-white p-2 shadow-md rounded-lg">
-				<h2 class="text-center text-4xl font-serif uppercase text-blue-800">
+				<h2 class="text-center text-4xl font-serif uppercase text-blue-800 mb-6">
 					{data[4].title.rendered}
 				</h2>
 				<span class="mt-4" set:html={data[4].content.rendered}></span>
 			</div>
 			<div class="bg-white p-2 shadow-md rounded-lg">
-				<h2 class="text-center text-4xl font-serif uppercase text-blue-800">
+				<h2 class="text-center text-4xl font-serif uppercase text-blue-800 mb-6">
 					{data[3].title.rendered}
 				</h2>
 				<span class="mt-4" set:html={data[3].content.rendered}></span>
 			</div>
 			<div class="bg-white p-2 shadow-md rounded-lg">
-				<h2 class="text-center text-4xl font-serif uppercase text-blue-800">
+				<h2 class="text-center text-4xl font-serif uppercase text-blue-800 mb-6">
 					{data[2].title.rendered}
 				</h2>
 				<span class="mt-4 prose" set:html={data[2].content.rendered}></span>
 			</div>
 			<div class="bg-white p-2 shadow-md rounded-lg">
-				<h2 class="text-center text-4xl font-serif uppercase text-blue-800">
+				<h2 class="text-center text-4xl font-serif uppercase text-blue-800 mb-6">
 					{data[1].title.rendered}
 				</h2>
 				<span class="mt-4 prose" set:html={data[1].content.rendered}></span>

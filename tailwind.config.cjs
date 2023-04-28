@@ -8,7 +8,7 @@ module.exports = {
   theme:{
     fontFamily:{
       'sans':['Poppins','system-ui'],
-      'serif':['Ultra','system-ui']
+      'serif':['Source Sans Pro','system-ui']
     }
   }
 }

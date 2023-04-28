@@ -8,9 +8,26 @@ let res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?slug=${s
 let post = await res.json()
 
 let url = Astro.request.url
+
+if (!post[0])
+  return Astro.redirect('/404')
 ---
 
-<Layout title={post[0].title.rendered} description={post[0].acf.property_brief_description}>
+<Layout
+	title={`${post[0].title.rendered} - AHL Properties`}
+  description={post[0].yoast_head_json.description}
+  type={post[0].yoast_head_json.og_type}
+  author={post[0].yoast_head_json.author}
+  og_width={post[0].yoast_head_json.og_image[0].width}
+  og_url={Astro.request.url}
+  og_height={post[0].yoast_head_json.og_image[0].height}
+  og_image={post[0].yoast_head_json.og_image[0].url}
+  canonical={Astro.request.url}
+  publish_time={post[0].yoast_head_json.article_published_time}
+  modified_time={post[0].yoast_head_json.article_modified_time}
+  og_image_type={post[0].yoast_head_json.og_image[0].type}
+  estimate_read_time={post[0].yoast_head_json.twitter_misc["Est. reading time"]}
+	description={post[0].acf.property_brief_description}>
 	<section class="container mx-auto p-4 mt-24">
 		<div class="grid lg:grid-cols-3 gap-2">
 			<div class="sm:col-span-2 bg-white shadow-md px-8">

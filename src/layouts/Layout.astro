@@ -1,32 +1,55 @@
 ---
 import Header from "@components/Header.svelte"
 import Footer from "@components/Footer.svelte"
-//import Whatsapp from "@components/Whatsapp.svelte"
 
+const locale = 'en-KE'
+const {type} = Astro.props
+const {author} = Astro.props
 const {title} = Astro.props
-const {description} = Astro.props
-const {og_image} = Astro.props
+const {og_width} = Astro.props
 const {og_url} = Astro.props
+const {og_height} = Astro.props
+const {og_image} = Astro.props
+const {canonical} = Astro.props
+const {publish_time} = Astro.props
+const {description} = Astro.props
+const {modified_time} = Astro.props
+const {og_image_type} = Astro.props
+const {estimate_read_time} = Astro.props
 ---
 <html lang="en-KE">
   <head>
-    <title>{title}</title>
     <meta charset="utf-8">
     <link rel="icon" type="image/svg+xml" href="/images/logo.png" />
     <link rel="preconnect" href={import.meta.env.PUBLIC_CMS} crossorigin />
     <meta name="robots" content="follow, index" />
-    <meta name="description" content={description} />
+    <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="/images/logo.png">
+    <meta name="description" content={description}>
+    <link rel="canonical" href={canonical} />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Alken Homes" />
+    <meta property="article:published_time" content={publish_time} />
+    <meta property="article:modified_time" content={modified_time} />
     <meta property="og:image" content={og_image} />
-    <meta property="og:url" content={og_url} />
+    <meta property="og:image:width" content={og_width} />
+    <meta property="og:image:height" content={og_height} />
+    <meta property="og:image:type" content={og_image_type} />
+    <meta name="author" content={author} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content={author} />
+    <meta name="twitter:label2" content="Est. reading time" />
+    <meta name="twitter:data2" content={estimate_read_time} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <style> @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); </style>
-    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
-    <style> @import url('https://fonts.googleapis.com/css2?family=Ultra&display=swap'); </style>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@700&display=swap" rel="stylesheet">
   </head>
   <body class="bg-gray-200">
     <Header client:load />
@@ -34,10 +57,10 @@ const {og_url} = Astro.props
         <slot />
       </main>
     <Footer client:load />
-    <!--<Whatsapp client:load />-->
+    <script src="//code.tidio.co/no0speag39zrwohsrhkrhdf7q0rotodf.js" async></script>
   </body>
   <!--Start of Tawk.to Script-->
-  <script type="text/javascript">
+  <!--<script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -47,6 +70,6 @@ const {og_url} = Astro.props
     s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
     })();
-  </script>
+  </script>-->
   <!--End of Tawk.to Script-->
 </html>

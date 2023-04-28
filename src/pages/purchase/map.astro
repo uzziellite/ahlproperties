@@ -7,11 +7,11 @@ const path = String(Astro.url)
 const property = path.split('=')
 ---
 
-<Layout title={`${property[1].toUpperCase()} MAP`} description="">
+<Layout title={`${property[1].toUpperCase()} MAP - AHL Properties`} description="">
 	<section class="container mx-auto mt-24 mb-12">
-		<h2 class="capitalize font-serif text-center uppercase text-4xl text-blue-800">
+		<h1 class="capitalize font-serif text-center uppercase text-4xl text-blue-800">
 			{property[1]} Property Map
-		</h2>
+		</h1>
 		<div class="grid place-content-center">
 			<p class="text-gray-700 lg:max-w-4xl p-2">
 				You can never go wrong with AHL properties. Real value for your money is what we are about. It is not simply vacant land, it’s land with breathtaking views and great appreciation rates. Something you can build on your retirement home, build several Airbnb, resell at a greater value, and so much more.
