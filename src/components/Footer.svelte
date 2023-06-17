@@ -39,7 +39,7 @@
           Contact Us
         </h2>
         <p class="mb-4">
-          <a href="mailto:info@ahlproperties.com" class="hover:underline">info@ahlproperties.com</a><br><br><a href="tel:+254734990660" class="hover:underline">0734 990 660</a> <br><br>P.O.Box 311 - 00623<br> AHL Properties, Head Office,<br> 4<sup>th</sup> Floor, Lavington Mall,<br> Close to Chandarana Shopping Center<br> James Gichuru Road,<br> Lavington
+          <a href="mailto:info@ahlproperties.co.ke" class="hover:underline">info@ahlproperties.co.ke</a><br><br><a href="tel:+254734990660" class="hover:underline">0734 990 660</a> <br><br>P.O.Box 311 - 00623<br> AHL Properties, Head Office,<br> 4<sup>th</sup> Floor, Lavington Mall,<br> Close to Chandarana Shopping Center<br> James Gichuru Road,<br> Lavington
 
         </p>
         <div class="flex space-x-3 lg:space-x-0 lg:flex-col lg:right-0 lg:fixed lg:space-y-3" style="top: 30%; z-index: 2;">

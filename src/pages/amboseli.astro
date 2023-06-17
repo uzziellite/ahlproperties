@@ -1,0 +1,84 @@
+---
+import Layout from "@layouts/Layout.astro"
+import Cta from "@components/Cta.svelte"
+
+//Load blogs
+const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=18&_embed&per_page=3&sort=desc`)
+const data = await res.json()
+---
+
+<Layout title="Project Amboseli - AHL Properties" description="">
+	<section class="bg-blue-800 h-[20em] w-full bg-cover bg-black bg-opacity-80" style="background-image: url('/images/amboseli.png');">
+		<h1 class="sr-only">
+			New Project Amboseli
+		</h1>
+	</section>
+
+  <section id="features" class="bg-gray-200 py-12">
+    <div class="container mx-auto">
+      <h2 class="text-3xl text-center font-semibold mb-8">Property Features</h2>
+      <div class="flex flex-wrap">
+        <div class="w-full md:w-1/3 px-4 mb-8">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold mb-4">Scenic Views</h3>
+            <p class="text-gray-700">
+              Enjoy breathtaking views of Mount Kilimanjaro and the surrounding landscape from your own property.
+            </p>
+          </div>
+        </div>
+        <div class="w-full md:w-1/3 px-4 mb-8">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold mb-4">Proximity to Amboseli Game Park</h3>
+            <p class="text-gray-700">
+              The property is located just a short distance away from Amboseli Game Park, allowing you to easily explore
+              the rich wildlife and natural beauty of the area.
+            </p>
+          </div>
+        </div>
+        <div class="w-full md:w-1/3 px-4 mb-8">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold mb-4">Investment Opportunity</h3>
+            <p class="text-gray-700">
+              With its strategic location and potential for development, this property offers an excellent investment
+              opportunity.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-6 mb-2 container mx-auto">
+		<div class="grid sm:grid-cols-3 gap-4 p-4">
+			<img src="/images/amboseli-1.jpg">
+			<img src="/images/amboseli-3.jpg">
+			<img src="/images/amboseli-4.jpg">
+		</div>
+	</section>
+
+  <section id="blogs" class="py-12">
+    <div class="container mx-auto">
+      <h2 class="text-3xl text-center font-semibold mb-8">Featured Blogs</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {
+				data.map((item) => (
+					<a href={`/blog/${item.slug}`} class="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-white p-4 shadow-sm">
+						<div class="relative">
+							<img role="presentation" class="object-cover w-full rounded h-44" src={item._embedded["wp:featuredmedia"] ? item._embedded["wp:featuredmedia"][0].media_details.sizes.medium.source_url : ''} />
+							<p class="absolute bg-black bg-opacity-80 bottom-1 text-white p-2">
+								Post written by: {item['_embedded'].author[0].name}
+							</p>
+						</div>
+						<div class="space-y-2">
+							<h3 class="text-2xl font-serif font-light group-hover:underline group-focus:underline">{item.title.rendered}</h3>
+							<span class="text-xs">{item.date_gmt}</span>
+							<span set:html={item.excerpt.rendered}></span>
+						</div>
+					</a>
+				))
+			}
+      </div>
+    </div>
+  </section>
+	<Cta client:load  />
+</Layout>

@@ -11,7 +11,7 @@ const videos = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?cat
 const video_data = await videos.json()
 
 //Load properties
-const properties = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=10&_embed&per_page=2`)
+const properties = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=10&_embed&per_page=3`)
 const property_data = await properties.json()
 ---
 
@@ -72,7 +72,7 @@ const property_data = await properties.json()
 		<h2 class="text-center text-4xl font-serif uppercase text-blue-800">
 			On going projects
 		</h2>
-		<div class="mt-4 grid sm:grid-cols-2 gap-4 divide-x-2">
+		<div class="mt-4 grid sm:grid-cols-3 gap-2 divide-x-2">
 			{
 				property_data.map((item) => (
 					<a href={`/properties/${item.slug}`} class="block rounded-lg p-4 bg-white shadow-sm">

@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout.astro"
 import Cta from "@components/Cta.svelte"
 
 //Load properties
-const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=10&_embed&order=asc`)
+const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=10&_embed&order=desc`)
 const data = await res.json()
 ---
 

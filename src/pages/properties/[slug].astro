@@ -4,6 +4,10 @@ import Cta from "@components/Cta.svelte"
 
 const { slug } = Astro.params
 
+/* Landing page for project Amboseli */
+if(slug.includes('amboseli'))
+	return Astro.redirect('/amboseli')
+
 let res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?slug=${slug}&_embed`)
 let post = await res.json()
 
