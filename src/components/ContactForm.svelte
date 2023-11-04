@@ -10,11 +10,15 @@
 
 	const sendMessage = () => {
 		loading = true
-		axios.post(`/email`,{
-			name,
-			email,
-			subject,
-			message
+		axios({
+			method:'post',
+			url:'/email',
+			data:{
+				name: name,
+				email: email,
+				subject: subject,
+				message: message	
+			}
 		}).then(() => {
 			loading = false
 			report = "Message sent successfully"
