@@ -11,7 +11,7 @@ export default defineConfig({
 	site:'https://www.ahlproperties.co.ke',
 	integrations:[
 		tailwind(),
-		svelte(),
+		svelte(),/*
 		sitemap({
 			customPages:[
 				'https://www.ahlproperties.co.ke/',
@@ -24,7 +24,7 @@ export default defineConfig({
 				'https://www.ahlproperties.co.ke/help',
 				'https://www.ahlproperties.co.ke/reviews'
 			]
-		}),
+		}),*/
 		prefetch()
 	],
 	output:"server",

@@ -13,7 +13,7 @@
       <div class="flex justify-start lg:w-0 lg:flex-1">
         <a href="/" class="flex transition hover:scale-110">
           <span class="sr-only">{name}</span>
-          <img class="h-12 w-auto sm:h-[75px] mt-2" src="/images/logo.png" alt={name}>
+          <img class="h-12 w-auto sm:h-[75px] mt-2 animate-pulse" src="/images/logo.png" alt={name}>
         </a>
       </div>
       <div class="-my-2 -mr-2 md:hidden">
@@ -74,7 +74,7 @@
     <div class="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
       <div class="px-5 pt-5 pb-6">
         <div class="flex items-center justify-between">
-          <div>
+          <div class="animate-pulse">
             <img class="w-24 h-auto" src="/images/logo.png" alt={name}>
           </div>
           <div class="-mr-2">

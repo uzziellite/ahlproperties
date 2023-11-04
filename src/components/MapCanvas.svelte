@@ -71,7 +71,7 @@
 		ctx.fillText('On hold',1128,356)
 
 		//Show taken property
-		ctx.fillStyle = 'red'
+		ctx.fillStyle = 'green'
 		ctx.fillRect(1070,380,50,30)
 		ctx.fillStyle = 'black'
 		ctx.fillText('Taken',1128,403)
@@ -104,7 +104,7 @@
 		
 		if (status === 'Sold') {
 			ctx.strokeStyle = 'white'
-			ctx.fillStyle = 'red'
+			ctx.fillStyle = 'green'
 		}else if (status === 'On hold') {
 			ctx.strokeStyle = 'white'
 			ctx.fillStyle = 'orange'
@@ -141,7 +141,7 @@
 		
 		if (status === 'Sold') {
 			ctx.strokeStyle = 'white'
-			ctx.fillStyle = 'red'
+			ctx.fillStyle = 'green'
 		}else if (status === 'On hold') {
 			ctx.strokeStyle = 'white'
 			ctx.fillStyle = 'orange'
