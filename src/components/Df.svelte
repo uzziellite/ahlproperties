@@ -27,7 +27,16 @@
 
 		localStorage.setItem('user',user_string)
 
-		sendEmail()
+		window.location.href  = "/purchase/ipf";
+
+		/**
+		 * There is no need to send this data over the network for now
+		 * This is the reason why I am removing this function
+		 * For now, save all the user data locally and only send it to the 
+		 * Server if the user has completed the whole form. This will help to 
+		 * differentiate those who are serious and those who are just sniffing around
+		 */
+		//sendEmail()
 	}
 
 	// If the user had filled the data previously
@@ -49,7 +58,7 @@
 		}
 	}
 
-	const sendEmail = () => {
+	/*const sendEmail = () => {
 		sending = true
 		axios.post('/detailsmail',{
 			name,
@@ -67,7 +76,7 @@
 			  icon: "error"
 			})
 		})
-	}
+	}*/
 
 	//Populate form when component is mounted
 	onMount(() => {
@@ -81,15 +90,15 @@
   </p>
   <label class="block">
     <span class="mb-1">Full name</span>
-    <input type="text" placeholder="Leroy Jenkins" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={name} required>
+    <input type="text" placeholder="Leroy Jenkins" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={name} required name="name" autocomplete="name">
   </label>
   <label class="block">
     <span class="mb-1">Phone Number</span>
-    <input type="text" placeholder="0712345678" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={phone} required>
+    <input type="text" placeholder="0712345678" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={phone} required name="phone" autocomplete="phone">
   </label>
   <label class="block">
     <span class="mb-1">Email address</span>
-    <input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required>
+    <input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required name="email" autocomplete="email">
   </label>
   {#if sending}
 	  <div class="my-4">
@@ -98,6 +107,11 @@
 	{:else}
 	 	<div class="my-4">
 	    <button type="submit" class="px-8 py-3 w-32 my-6 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 focus:ring-indigo-400 hover:ring-indigo-400 bg-blue-800 text-white">Submit</button>
+	    <a href="/purchase/map?property=marafiki-homes" class="px-8 py-3 w-32 my-6 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 focus:ring-indigo-400 hover:ring-indigo-400 bg-orange-600 text-white">
+	    	Back
+	    </a>
+	  </div>
+	  <div class="my-4">
 	  </div>
 	{/if}
 </form>

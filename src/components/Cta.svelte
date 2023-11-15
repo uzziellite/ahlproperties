@@ -4,19 +4,16 @@
   let name
   let phone
   let email
-  let date
   let loading = false
   let report
   let error
-  //let min_date = new Date().toISOString().split("T")[0]
 
   const book = () => {
     loading = true
     axios.post(`/book`,{
       name,
       phone,
-      email,
-      date
+      email
     }).then((resp) => {
       loading = false
       report = 'Booking was successful. We will contact you shortly'
@@ -48,24 +45,20 @@
         </span>
         <label class="block">
           <span class="mb-1 text-white sm:text-black">Full name</span>
-          <input type="text" placeholder="Leroy Jenkins" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={name} required>
+          <input type="text" placeholder="Leroy Jenkins" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={name} required name="name" autocomplete="name">
         </label>
         <label class="block">
           <span class="mb-1 text-white sm:text-black">Phone Number</span>
-          <input type="text" placeholder="0712345678" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={phone} required>
+          <input type="text" placeholder="0712345678" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={phone} required name="phone" autocomplete="phone">
         </label>
         <label class="block">
           <span class="mb-1 text-white sm:text-black">Email address</span>
-          <input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required>
+          <input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required name="email" autocomplete="email">
         </label>
-        <!--<label class="block">
-          <span class="mb-1 text-white sm:text-black">Date</span>
-          <input type="date" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={date} min={min_date} required>
-        </label>-->
         {#if !report}
           {#if loading}
             <div class="my-4">
-              <button type="submit" class="px-8 py-3 w-32 my-6 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 focus:ring-indigo-400 hover:ring-indigo-400 bg-blue-800 text-white">Sending message <span class="animate-ping">...</span></button>
+              <button type="submit" class="px-8 py-3 w-full my-6 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 focus:ring-indigo-400 hover:ring-indigo-400 bg-blue-800 text-white">Sending message <span class="animate-ping">...</span></button>
             </div>
           {:else}
             <div class="my-4">

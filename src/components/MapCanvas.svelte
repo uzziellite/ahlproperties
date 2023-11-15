@@ -318,7 +318,13 @@
 					  text: `Sorry, plot number ${item.label} is already taken and can not be sold to another client`,
 					  icon: "warning"
 					})
-				}else{
+				}else if (item.status === 'On hold') {
+					swal({
+					  title: "Plot is on hold",
+					  text: `Sorry, plot number ${item.label} is currently on hold and is not Available`,
+					  icon: "warning"
+					})
+				} else {
 					localStorage.setItem('land',JSON.stringify({"plot":item.label,"status":item.status}))
 					localStorage.setItem('prev', window.location.href)
 					

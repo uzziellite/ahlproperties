@@ -35,24 +35,24 @@
 	</button>
 	<label class="block">
 		<span class="mb-1">Full name</span>
-		<input type="text" placeholder="Leroy Jenkins" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={name}>
+		<input type="text" placeholder="Leroy Jenkins" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={name} required name="name" autocomplete="name">
 	</label>
 	<label class="block">
 		<span class="mb-1">Email address</span>
-		<input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email}>
+		<input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required name="email" autocomplete="email">
 	</label>
 	<label class="block">
 		<span class="mb-1">Subject</span>
-		<input type="text" placeholder="Subject" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={subject}>
+		<input type="text" placeholder="Subject" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={subject} required name="subject">
 	</label>
 	<label class="block">
 		<span class="mb-1">Message</span>
-		<textarea rows="3" class="block w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={message}></textarea>
+		<textarea rows="3" class="block w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={message} required name="message"></textarea>
 	</label>
 	{#if !report}
 		{#if loading}
 			<div class="my-4">
-				<button type="submit" class="px-8 py-3 w-32 my-6 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 focus:ring-indigo-400 hover:ring-indigo-400 bg-blue-800 text-white">Sending message <span class="animate-ping">...</span></button>
+				<button type="submit" class="px-8 py-3 w-full my-6 text-lg rounded focus:ring hover:ring focus:ring-opacity-75 focus:ring-indigo-400 hover:ring-indigo-400 bg-blue-800 text-white">Sending message <span class="animate-ping">...</span></button>
 			</div>
 		{:else}
 			<div class="my-4">

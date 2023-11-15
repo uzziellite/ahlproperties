@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import svelte from '@astrojs/svelte';
-import sitemap from '@astrojs/sitemap';
-import prefetch from '@astrojs/prefetch';
+//import sitemap from '@astrojs/sitemap';
+//import prefetch from '@astrojs/prefetch';
 //import node from '@astrojs/node';
 import vercel from '@astrojs/vercel/serverless';
 
@@ -25,7 +25,7 @@ export default defineConfig({
 				'https://www.ahlproperties.co.ke/reviews'
 			]
 		}),*/
-		prefetch()
+		//prefetch()
 	],
 	output:"server",
 	/*adapter: node({
