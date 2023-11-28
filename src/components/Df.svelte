@@ -1,7 +1,7 @@
 <script>
 	import {onMount} from "svelte"
 	import axios from "axios"
-	import Swal from "sweetalert"
+	//import Swal from "sweetalert"
 	
 	//Details form
 	let name

@@ -9,7 +9,6 @@ export const POST: APIRoute = async ({ request }) => {
     const phone = body.phone;
     const plot = body.plot;
     const downpayment = body.downpayment;
-    const paymentplan = body.paymentplan;
     const subject = `Interested in Purchasing plot number ${plot}`;
     const message = `I need this property. Please get back to me with more information`;
 
@@ -21,7 +20,6 @@ export const POST: APIRoute = async ({ request }) => {
     formData.append('phone',phone);
     formData.append('plot',plot);
     formData.append('downpayment',downpayment);
-    formData.append('paymentplan',paymentplan);
     formData.append('your-subject',subject);
     formData.append('your-message',message);
 

@@ -329,8 +329,8 @@
 					localStorage.setItem('prev', window.location.href)
 					
 					swal({
-					  title: "Congratulations",
-					  text: `You have succesfully selected plot number ${item.label}. Complete the purchase process now`,
+					  title: "Congratulations on selecting a plot!",
+					  text: `You have selected plot number ${item.label}. Let us get your details to secure your plot`,
 					  icon: "success"
 					})
 					.then((willDelete) => {

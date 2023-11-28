@@ -1,33 +1,26 @@
 <script>
-	/**
-	 * This is the data for the initial payment form
-	 * In light of the new requirements, there seems to be a need for only
-	 * Two payment plans. 6/12 months installments. We shall therefore comment
-	 * out the other portions of the payment plan
-	 */
-
 	import Swal from "sweetalert"
+	
 	let dp = '200000' // Downpayment
-	let ndp 				 // New downpayment
-	let pp 					 // Payment Plan
-	let custom 			 // Custom amount to pay
-
 
 	const paymentDetails = () => {
 
-		if (typeof pp != 'undefined') {
+		if (typeof dp != 'undefined') {
 			localStorage.removeItem('ipf')
-			let ipf
 
-			if(dp === 'Other'){
+			let ipf;
+			
+			if(dp == '200000') {
 				ipf = {
-					downpayment: ndp,
-					paymentplan: pp
+					downpayment: `Ksh 200,000 downpayment with 6 monthly installments of KSH 65,833`
+				}
+			}else if (dp == '250000') {
+				ipf = {
+					downpayment: `Ksh 250,000 downpayment with 12 monthly installments of KSH 33,333`
 				}
 			}else{
 				ipf = {
-					downpayment: dp,
-					paymentplan: pp
+					downpayment: `Ksh 550,000 paid full in Cash`
 				}
 			}
 
@@ -37,7 +30,7 @@
 
 			Swal({
 				title:"Congratulations",
-				text:"You have successfully set your desired payment methods",
+				text:"You have successfully set your desired payment methods. Verify that the information is correct in the next step",
 				icon:"success"
 			}).then(() => {
 				window.location.href = '/purchase/holding'
@@ -51,25 +44,6 @@
 		}
 	}
 
-	//Watch for ndp variable
-	$:{
-		if (typeof custom != 'undefined') {
-			pp = undefined
-			ndp = custom
-		}
-	}
-
-	// Reset the variables once there is a new data set to fix the bug where price 
-	// is not updating appropriately
-	$:{
-		if (dp !== 'Other') {
-			ndp = undefined
-			custom = undefined
-			pp = undefined
-		}else{
-			pp = undefined
-		}
-	}
 </script>
 
 <form class="flex flex-col py-6 space-y-6 md:py-0 p-4 md:px-6 bg-white bg-opacity-60 shadow-lg rounded-lg mt-12" on:submit|preventDefault={() => paymentDetails()}>
@@ -77,59 +51,15 @@
     Payments
   </span>
   <label class="block">
-    <span class="mb-1 text-xl font-bold">How much would you like to pay as downpayment</span>
+    <span class="mb-1 text-xl font-bold">How much would you like to pay?</span>
     <div class="block">
-	    <input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={dp} required value="50000"> Ksh 200, 000
-    </div>
-    <div class="block">
-	    <input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={dp} required value="100000"> Ksh 250, 000
+	    <input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={dp} required value="200000"> Ksh 200, 000 downpayment with 6 monthly installments of KSH 65,833
     </div>
     <div class="block">
-	    <input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={dp} required value="Other"> Other amount (Not less than 250,000)
+	    <input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={dp} required value="250000"> Ksh 250, 000 downpayment with 12 monthly installments of KSH 33,333
     </div>
-  </label>
-  {#if dp == 'Other'}
-    <div class="grid">
-    	Enter custom amount
-    	<input type="number" bind:value={custom} class="p-2 sm:max-w-md" min="250001" max="700000" required>
-    </div>
-   {/if}
-  <label class="block">
-    <span class="mb-1 text-xl font-bold">What is your preferred payment plan</span>
     <div class="block">
-    	{#if ndp}
-    		<input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={pp} required value={`KSH ${550000 - ndp} Paid at once in cash`}> Cash: Ksh {(550000 - ndp).toLocaleString(undefined,{ minimumFractionDigits: 0 })}
-    	{:else}
-		    <input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={pp} required value={`KSH ${550000 - dp} Paid at once in cash`}> Cash: Ksh {(550000 - dp).toLocaleString(undefined,{ minimumFractionDigits: 0 })}
-    	{/if}
-    </div>
-    <!--<div class="block">
-    	{#if ndp}
-    		<input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={pp} required value={`${565000 - ndp} 3M`}> 3 Months Installment of Ksh {Math.ceil((565000 - ndp) / 3).toLocaleString(undefined,{ minimumFractionDigits: 0 })}  Total Ksh: {(565000 - ndp).toLocaleString(undefined,{ minimumFractionDigits: 0 })}
-    	{:else}
-		    <input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={pp} required value={`${565000 - dp} 3M`}> 3 Months Installment of Ksh {Math.ceil((565000 - dp) / 3).toLocaleString(undefined,{ minimumFractionDigits: 0 })}  Total Ksh: {(565000 - dp).toLocaleString(undefined,{ minimumFractionDigits: 0 })}
-    	{/if}
-    </div>-->
-    <div class="block mt-2">
-			{#if ndp}
-    		<input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={pp} required value={`KSH ${595000 - ndp} paid in full by 6 months`}> 6 Months Installment of Ksh {Math.ceil((595000 - ndp) / 6).toLocaleString(undefined,{ minimumFractionDigits: 0 })}  Total Ksh: {(595000 - ndp).toLocaleString(undefined,{ minimumFractionDigits: 0 })}
-    	{:else}
-		    <input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={pp} required value={`KSH ${595000 - dp} paid in full by 6 months`}> 6 Months Installment of Ksh {Math.ceil((595000 - dp) / 6).toLocaleString(undefined,{ minimumFractionDigits: 0 })}  Total Ksh: {(595000 - dp).toLocaleString(undefined,{ minimumFractionDigits: 0 })}
-    	{/if}
-    </div>
-    <!--<div class="block mt-2">
-    	{#if ndp}
-    		<input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={pp} required value={`${595000 - ndp} 9M`}> 9 Months Installment of Ksh {Math.ceil((595000 - ndp) / 9).toLocaleString(undefined,{ minimumFractionDigits: 0 })}  Total Ksh: {(595000 - ndp).toLocaleString(undefined,{ minimumFractionDigits: 0 })}
-    	{:else}
-		    <input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={pp} required value={`${595000 - dp} 9M`}> 9 Months Installment of Ksh {Math.ceil((595000 - dp) / 9).toLocaleString(undefined,{ minimumFractionDigits: 0 })}  Total Ksh: {(595000 - dp).toLocaleString(undefined,{ minimumFractionDigits: 0 })}
-    	{/if}
-    </div>-->
-    <div class="block mt-2">
-    	{#if ndp}
-    		<input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={pp} required value={`KSH ${650000 - ndp} paid in full by 12 months`}> 12 Months Installment of Ksh {Math.ceil((650000 - ndp) / 12).toLocaleString(undefined,{ minimumFractionDigits: 0 })}  Total Ksh: {(650000 - ndp).toLocaleString(undefined,{ minimumFractionDigits: 0 })}
-    	{:else}
-		    <input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={pp} required value={`KSH ${650000 - dp} paid in full by 12 months`}> 12 Months Installment of Ksh {Math.ceil((650000 - dp) / 12).toLocaleString(undefined,{ minimumFractionDigits: 0 })}  Total KSh: {(650000 - dp).toLocaleString(undefined,{ minimumFractionDigits: 0 })}
-    	{/if}
+	    <input type="radio" class="shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:group={dp} required value="550000"> Ksh 550, 000 Cash
     </div>
   </label>
 	<div class="my-4">

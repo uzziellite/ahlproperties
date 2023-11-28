@@ -16,7 +16,6 @@
   let phone;
   let plot;
   let downpayment;
-  let paymentplan;
   let error = false;
   let submitting = false;
 
@@ -35,13 +34,7 @@
       email = user.email;
       phone = user.phone;
       plot = land.plot;
-      downpayment = new Intl.NumberFormat('en-KE', { 
-        style: 'currency', 
-        currency: 'KSH' 
-      }).format(ipf.downpayment);
-
-      // Generate a string for the payment plan
-      paymentplan = ipf.paymentplan;
+      downpayment = ipf.downpayment;
     }else{
       error = true;
     }
@@ -62,17 +55,17 @@
         email:email,
         phone:phone,
         plot:plot,
-        downpayment:downpayment,
-        paymentplan:paymentplan
+        downpayment:downpayment
       }
     }).then(() => {
       submitting = false;
       Swal({
         title:"Completed",
-        text:"You have successfully submitted your information. Our sales agent will be in touch with you within 24 - 48 hours.",
+        text:"You have successfully submitted your information. Our sales agent will be in touch with you within 24 - 48 hours. Download a copy of your sales agreement",
         icon:"success"
       }).then(() => {
-        window.location.href = '/'
+        //window.location.href = '/'
+        downloadAgreement();
       })
     }).catch(err => {
       console.error( `An error occured: ${err}`)
@@ -83,6 +76,34 @@
       })
 
       submitting = false;
+    })
+  }
+
+  /**
+   * Show sales agreement data already captured as a pdf file then download it.
+   */
+  const downloadAgreement = async () => {
+    Swal("Generating sales agreement copy. Please wait...");
+
+    //Begin Generating the PDF file of the sales agreement for download.
+    const opt = {
+      margin:       1,
+      filename:     'Sales Agreement.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    // Print the pdf file
+    await html2pdf().set(opt).from(document.querySelector("#agreement")).save();
+
+    // Redirect the user back to the main homepage
+    Swal({
+      title:"Download Completed",
+      text:"Thank you for doing business with us. Our sales agent will contact you shortly with further details",
+      icon:"success"
+    }).then(() => {
+      window.location.href = '/'
     })
   }
 
@@ -137,16 +158,9 @@
 
     <!-- Payment Information -->
     <div class="mb-4">
-        <label class="block text-gray-600 text-sm font-semibold mb-2">Down Payment Amount:</label>
+        <label class="block text-gray-600 text-sm font-semibold mb-2">Payment Plan:</label>
         <p class="text-gray-800">
           {downpayment}
-        </p>
-    </div>
-
-    <div class="mb-4">
-        <label class="block text-gray-600 text-sm font-semibold mb-2">Chosen Payment Plan:</label>
-        <p class="text-gray-800">
-          {paymentplan}
         </p>
     </div>
 
@@ -167,4 +181,12 @@
 
   {/if}
 
+</div>
+
+<!-- The content to be generated for the PDF file goes here -->
+<div id="agreement" hidden>
+  <h2>Sales Agreement Data</h2>
+  <p>
+    Please find your sales agreement information here
+  </p>
 </div>
