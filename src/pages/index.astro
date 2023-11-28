@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro"
 import Cta from "@components/Cta.svelte"
+import Milestones from "@components/Milestones.svelte"
 
 //Load blogs
 const blogs = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=3&_embed&per_page=3`)
@@ -146,68 +147,8 @@ const property_data = await properties.json()
 			}
 		</div>
 	</section>
-	<section class="bg-white shadow-md container mx-auto mt-4 p-6">
-		<div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-	    <div class="mx-auto max-w-3xl text-center">
-	      <h2 class="text-center text-4xl font-serif uppercase text-blue-800 mb-4">
-	        Milestones Covered
-	      </h2>
-
-	      <p class="mt-4 text-gray-500 sm:text-xl">
-	        Check out our progress over the years
-	      </p>
-	    </div>
-
-	    <div class="mt-8 sm:mt-12">
-	      <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-	        <div class="flex rounded-lg border border-gray-200 hover:border-yellow-600 transition hover:scale-90 px-4 text-center space-x-12">
-	        	<div class="text-gray-500 py-8">
-		        	<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-	        	</div>
-	        	<div class="flex flex-col py-8">
-		          <dt class="order-last text-lg font-medium text-gray-500">
-		            Projects
-		          </dt>
-
-		          <dd class="text-4xl font-extrabold text-blue-800 md:text-5xl">
-		            10
-		          </dd>
-	        	</div>
-	        </div>
-
-	        <div class="flex rounded-lg border border-gray-200 hover:border-yellow-600 transition hover:scale-90 px-4 text-center space-x-12">
-	        	<div class="text-gray-500 py-8">
-		        	<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-	        	</div>
-	        	<div class="flex flex-col py-8">
-		          <dt class="order-last text-lg font-medium text-gray-500">
-		            Title Deeds
-		          </dt>
-
-		          <dd class="text-4xl font-extrabold text-blue-800 md:text-5xl">
-		            100
-		          </dd>
-	        	</div>
-	        </div>
-	        <div class="flex rounded-lg border border-gray-200 hover:border-yellow-600 transition hover:scale-90 px-4 text-center space-x-12">
-	        	<div class="text-gray-500 py-8">
-		        	<svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-	        	</div>
-	        	<div class="flex flex-col py-8">
-		          <dt class="order-last text-lg font-medium text-gray-500">
-		            Years Experience
-		          </dt>
-
-		          <dd class="text-4xl font-extrabold text-blue-800 md:text-5xl">
-		            5+
-		          </dd>
-	        	</div>
-	        </div>
-	      </dl>
-	    </div>
-	  </div>
-	</section>
-	<section class="container mx-auto mt-4 mb-4 p-6">
+	<Milestones client:load />
+	<!--<section class="container mx-auto mt-4 mb-4 p-6">
 		<div class="grid sm:grid-cols-2 gap-6">
 			<div class="h-[29rem] overflow-hidden overflow-scroll p-4 bg-white">
 				<h3 class="text-2xl text-blue-800 font-extrabold">
@@ -223,6 +164,6 @@ const property_data = await properties.json()
 				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fahlproperties.ke&tabs=timeline&width=500&height=450&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=312091994974861" width="500" height="450" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 			</div>
 		</div>
-	</section>
+	</section>-->
 	<Cta client:load />
 </Layout>
