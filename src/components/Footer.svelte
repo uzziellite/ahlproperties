@@ -46,8 +46,11 @@
           <a href="https://www.facebook.com/ahlproperties.ke" title="Facebook" class="flex items-center p-1 text-yellow-600" target="_blank">
             <img src="/images/facebook.svg">
           </a>
-          <a rel="noopener noreferrer" href="https://twitter.com/ahl_properties" title="Twitter" class="flex items-center p-1 text-yellow-600" target="_blank">
+          <!--<a rel="noopener noreferrer" href="https://twitter.com/ahl_properties" title="Twitter" class="flex items-center p-1 text-yellow-600" target="_blank">
             <img src="/images/twitter.svg">
+          </a>-->
+          <a rel="noopener noreferrer" href="https://www.tiktok.com/@ahlproperties" title="Tiktok" class="flex items-center p-1 text-yellow-600" target="_blank">
+            <img src="/images/tiktok.svg">
           </a>
           <a href="https://instagram.com/ahlproperties.ke" title="Instagram" class="flex items-center p-1 text-yellow-600" target="_blank">
             <img src="/images/instagram.svg">
