@@ -61,7 +61,7 @@
       submitting = false;
       Swal({
         title:"Completed",
-        text:"You have successfully submitted your information. Our sales agent will be in touch with you within 24 - 48 hours. Download a copy of your sales agreement",
+        text:"You have successfully submitted your information. Our sales agent will be in touch with you shortly. A copy of your sales agreement will be shown to you shortly",
         icon:"success"
       }).then(() => {
         
@@ -73,7 +73,7 @@
       // An error has occured but still proceed. Vercel might just have timed out the request
       Swal({
         title:"Completed",
-        text:"You have successfully submitted your information. Our sales agent will be in touch with you within 24 - 48 hours. Download a copy of your sales agreement",
+        text:"You have successfully submitted your information. Our sales agent will be in touch with you shortly. A copy of your sales agreement will be shown to you shortly",
         icon:"success"
       }).then(() => {
         downloadAgreement();
@@ -87,27 +87,13 @@
    * Show sales agreement data already captured as a pdf file then download it.
    */
   const downloadAgreement = async () => {
-    Swal("Generating sales agreement copy. Please wait...");
-
-    //Begin Generating the PDF file of the sales agreement for download.
-    const opt = {
-      margin:       1,
-      filename:     'Sales Agreement.pdf',
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-    };
-
-    // Print the pdf file
-    await html2pdf().set(opt).from(document.querySelector("#agreement")).save();
-
     // Redirect the user back to the main homepage
     Swal({
-      title:"Download Completed",
-      text:"Thank you for doing business with us. Our sales agent will contact you shortly with further details",
+      title:"Sales Agreement Copy Generated",
+      text:"Thank you for doing business with us. Take a look at the sales agreement copy",
       icon:"success"
     }).then(() => {
-      window.location.href = '/'
+      window.open('/purchase/agreement','_blank');
     })
   }
 
@@ -185,12 +171,4 @@
 
   {/if}
 
-</div>
-
-<!-- The content to be generated for the PDF file goes here -->
-<div id="agreement" hidden>
-  <h2>Sales Agreement Data</h2>
-  <p>
-    Please find your sales agreement information here
-  </p>
 </div>
