@@ -8,6 +8,8 @@
 	let phone
 	let email
 	let plot
+	let id
+	let address
 	let sending = false
 	let user
 	const prev = localStorage.getItem('prev')
@@ -20,7 +22,9 @@
 		user = {
 			name: name,
 			phone: phone,
-			email: email
+			email: email,
+			id:id,
+			address:address
 		}
 
 		const user_string = await JSON.stringify(user)
@@ -46,6 +50,8 @@
 			name = user.name
 			phone = user.phone
 			email = user.email
+			id = user.id
+			address = user.address
 		}
 
 		if(localStorage.getItem('land')){
@@ -99,6 +105,14 @@
   <label class="block">
     <span class="mb-1">Email address</span>
     <input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required name="email" autocomplete="email">
+  </label>
+  <label class="block">
+    <span class="mb-1">ID Number</span>
+    <input type="text" placeholder="12345678" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={id} required name="id" autocomplete="id">
+  </label>
+  <label class="block">
+    <span class="mb-1">P.O.BOX Address</span>
+    <input type="text" placeholder="P.O.BOX 001, Nairobi, 00100" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={address} required name="address" autocomplete="address">
   </label>
   {#if sending}
 	  <div class="my-4">

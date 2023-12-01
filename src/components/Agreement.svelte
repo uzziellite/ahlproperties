@@ -16,6 +16,8 @@ let error;
 let year;
 let month;
 let date;
+let address;
+let id;
 const currentDate = new Date();
 
 /**
@@ -52,6 +54,8 @@ const loadData = async() => {
     //phone = user.phone;
     plot = land.plot;
     downpayment = ipf.downpayment;
+    id = user.id;
+    address = user.address;
 
     setVariables();
   }else{
@@ -175,7 +179,7 @@ onMount(() => {
 
 <hr>
 <h1 class="code-line" data-line-start="0" data-line-end="1">
-  <a id="Sale_Agreement_0"></a>SALE AGREEMENT
+  SALES AGREEMENT
 </h1>
 <p class="has-line-data" data-line-start="2" data-line-end="3">DATED THIS {@html date} Day of {month} {year}</p>
 <p class="has-line-data" data-line-start="4" data-line-end="5">AMY HOLDINGS LIMITED (the “Vendor”)</p>
@@ -193,7 +197,7 @@ onMount(() => {
   <p class="has-line-data" data-line-start="25" data-line-end="26">AMY HOLDINGS LIMITED, company registration number <strong>CPR/2012/74069</strong> of P.O Box 311-00623 in the Republic of Kenya (Hereinafter the “Vendor” which expression shall where the context so admits include its successors in title and assigns); and </p>
 </blockquote>
 <blockquote>
-  <p class="has-line-data" data-line-start="27" data-line-end="28">{name} holder of ID number _______________________ P.O Box________________________________________ (hereafter the “Purchaser” which expression shall where the contexts allow include their personal representative(s) and assign(s)).</p>
+  <p class="has-line-data" data-line-start="27" data-line-end="28"><strong><u>{name}</u></strong> holder of ID number <strong><u>{id}</u></strong>, <strong><u>{address}</u></strong> (hereafter the “Purchaser” which expression shall where the contexts allow include their personal representative(s) and assign(s)).</p>
 </blockquote>
 <p class="has-line-data" data-line-start="29" data-line-end="30">WHEREAS-</p>
 <blockquote>

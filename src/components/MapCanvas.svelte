@@ -25,10 +25,10 @@
 	//Get the plots from the database
 	const loadPlots = async () => {
 		if(property === 'marafiki-residence'){
-			const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=14&per_page=100&_fields=acf&tags=15`,{cache: 'no-store'})
+			const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=14&per_page=100&_fields=acf,id&tags=15`,{cache: 'no-store'})
 			data = await res.json()
     }else if(property === 'marafiki-homes'){
-    	const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=14&per_page=100&_fields=acf&tags=16`,{cache: 'no-store'})
+    	const res = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=14&per_page=100&_fields=acf,id&tags=16`,{cache: 'no-store'})
 			data = await res.json()
     }else{
     	alert("Unknown property, Unable to fetch data")
@@ -99,7 +99,7 @@
 	}
 
 	//Draw rectangular plots
-	const drawRectangle = (ctx,status,cdnts,number='0000',textcdnts) => {
+	const drawRectangle = (ctx,status,cdnts,number='0000',textcdnts,id) => {
 		const coordinates = cdnts.split(',')
 		
 		if (status === 'Sold') {
@@ -130,12 +130,13 @@
 		db.yMax = Number(coordinates[1]) + Number(coordinates[3])
 		db.yMin = Number(coordinates[1])
 		db.status = status
+		db.id = id
 
 		store.push(db)
 	}
 
 	//Draw polygonal plots
-	const drawPolygon = (ctx,status,cdnts,number='0000',textcdnts) => {
+	const drawPolygon = (ctx,status,cdnts,number='0000',textcdnts,id) => {
 		const coordinates = cdnts.split(',')
 		const clickCoordinates = textcdnts.split(',')
 		
@@ -171,16 +172,17 @@
 		db.yMax = Number(clickCoordinates[1]) + 50
 		db.yMin = Number(clickCoordinates[1]) - 50
 		db.status = status
+		db.id = id
 
 		store.push(db)
 	}
 
 	//Draw map
-	const drawMap = (ctx,status,coordinates,number='0000',type,textcdnts) => {
+	const drawMap = (ctx,status,coordinates,number='0000',type,textcdnts,id) => {
 		if (type === 'Polygon') {
-			drawPolygon(ctx,status,coordinates,number,textcdnts)
+			drawPolygon(ctx,status,coordinates,number,textcdnts,id)
 		}else{
-			drawRectangle(ctx,status,coordinates,number,textcdnts)
+			drawRectangle(ctx,status,coordinates,number,textcdnts,id)
 		}
 	}
 
@@ -212,9 +214,9 @@
 
 		data.map((item) => {
 			if (item.acf.project === 'Marafiki Residence') {
-				drawMap(ctx,item.acf.status,item.acf.coordinates,String(item.acf.property_code),item.acf.type,item.acf.text_coordinates)
+				drawMap(ctx,item.acf.status,item.acf.coordinates,String(item.acf.property_code),item.acf.type,item.acf.text_coordinates,item.id)
 			}else{
-				drawMap(ctx,item.acf.status,item.acf.coordinates,String(item.acf.property_code),item.acf.type,item.acf.text_coordinates)
+				drawMap(ctx,item.acf.status,item.acf.coordinates,String(item.acf.property_code),item.acf.type,item.acf.text_coordinates,item.id)
 			}
 		})
 	}
@@ -325,7 +327,11 @@
 					  icon: "warning"
 					})
 				} else {
-					localStorage.setItem('land',JSON.stringify({"plot":item.label,"status":item.status}))
+					localStorage.setItem('land',JSON.stringify({
+						"plot":item.label,
+						"status":item.status,
+						"id":item.id
+					}))
 					localStorage.setItem('prev', window.location.href)
 					
 					swal({

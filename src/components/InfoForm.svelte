@@ -11,11 +11,14 @@
    * directly to this final page
    */
 
+  let id;
+  let plot;
 	let name;
   let email;
   let phone;
-  let plot;
   let downpayment;
+  let address;
+  let id_number;
   let error = false;
   let submitting = false;
 
@@ -30,11 +33,14 @@
       const land = await JSON.parse(localStorage.getItem("land"));
       const ipf = await JSON.parse(localStorage.getItem("ipf"));
       
+      id = land.id;
       name = user.name;
+      plot = land.plot;
       email = user.email;
       phone = user.phone;
-      plot = land.plot;
       downpayment = ipf.downpayment;
+      id_number = user.id;
+      address = user.address;
     }else{
       error = true;
     }
@@ -51,11 +57,14 @@
       method:"post",
       url:"/createlead",
       data:{
+        id:id,
         name:name,
         email:email,
         phone:phone,
         plot:plot,
-        downpayment:downpayment
+        downpayment:downpayment,
+        id_number: id_number,
+        address: address
       }
     }).then(() => {
       submitting = false;
