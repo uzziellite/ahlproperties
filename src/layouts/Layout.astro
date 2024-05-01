@@ -6,9 +6,6 @@ const locale = 'en-KE'
 const {type} = Astro.props
 const {author} = Astro.props
 const {title} = Astro.props
-const {og_width} = Astro.props
-const {og_url} = Astro.props
-const {og_height} = Astro.props
 const {og_image} = Astro.props
 const {canonical} = Astro.props
 const {publish_time} = Astro.props
@@ -37,8 +34,6 @@ const {estimate_read_time} = Astro.props
     <meta property="article:published_time" content={publish_time} />
     <meta property="article:modified_time" content={modified_time} />
     <meta property="og:image" content={og_image} />
-    <meta property="og:image:width" content={og_width} />
-    <meta property="og:image:height" content={og_height} />
     <meta property="og:image:type" content={og_image_type} />
     <meta name="author" content={author} />
     <meta name="twitter:card" content="summary_large_image" />
@@ -59,17 +54,16 @@ const {estimate_read_time} = Astro.props
     <Footer client:load />
   </body>
   <!--Start of Tawk.to Script-->
-  <script type="text/javascript">
+  <script is:inline type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
     s1.async=true;
     s1.src='https://embed.tawk.to/639996a8daff0e1306dc9770/1gk7v91lp';
-    s1.charset='UTF-8';
     s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
     })();
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" async></script>
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" async></script>
   <!--End of Tawk.to Script-->
 </html>
