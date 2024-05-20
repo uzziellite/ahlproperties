@@ -21,7 +21,7 @@ export const post = async ({ request }) => {
   }
 }*/
 
-export const POST: APIRoute = async ({ request }) => {
+/*export const POST: APIRoute = async ({ request }) => {
   if (request.headers.get("Content-Type") === "application/json") {
     
     let reply;
@@ -67,4 +67,4 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   return new Response(null, { status: 400 });
-}
+}*/
