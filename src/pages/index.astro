@@ -1,84 +1,38 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Cta from "@components/Cta.svelte";
-import Milestones from "@components/Milestones.svelte";
+import Layout from "@layouts/Layout.astro"
+import Cta from "@components/Cta.svelte"
+import Milestones from "@components/Milestones.svelte"
 
 // Load blogs
-const blogs = await fetch(
-  `${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=3&_embed&per_page=3`
-);
-const blog_data = await blogs.json();
+const blogs = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=3&_embed&per_page=3`)
+const blog_data = await blogs.json()
 
 // Fetch youtube videos
-const videos = await fetch(
-  `${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=5&tags=6&per_page=4`
-);
-const video_data = await videos.json();
+const videos = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=5&tags=6&per_page=4`)
+const video_data = await videos.json()
 
 // Load properties
-const properties = await fetch(
-  `${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=10&_embed&per_page=3`
-);
-const property_data = await properties.json();
+const properties = await fetch(`${import.meta.env.PUBLIC_CMS}wp-json/wp/v2/posts?categories=10&_embed&per_page=3`)
+const property_data = await properties.json()
 ---
 
-<Layout
-  title="Your Ideal Investment Partner - AHL Properties"
-  description="AHL Properties is your ideal real estate investment partner in Kenya"
->
-  <style>
-    /* Font Style */
-    body {
-      font-family: "Segoe UI", Roboto, Arial, sans-serif; /* Use a clean and modern sans-serif font */
-    }
-
-    /* Resizing */
-    @media (max-width: 768px) {
-      /* Resize images in the slideshow for smaller screens */
-      .swiper-container img {
-        height: auto;
-        max-height: 70vh; /* Adjust max-height as needed for smaller screens */
-      }
-
-      /* Adjust font sizes for smaller screens */
-      .text-4xl {
-        font-size: 2.5rem;
-      }
-
-      .text-2xl {
-        font-size: 1.5rem;
-      }
-
-      .text-xl {
-        font-size: 1.25rem;
-      }
-
-      .text-lg {
-        font-size: 1.125rem;
-      }
-
-      .text-sm {
-        font-size: 0.875rem;
-      }
-    }
-  </style>
-
+<Layout title="Your Ideal Investment Partner - AHL Properties" description="AHL Properties is your ideal real estate investment partner in Kenya">
   <div class="swiper-container !overflow-hidden z-50">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <img src="/images/beach.png" class="lg:h-screen w-full" alt="Beach" />
+        <img src="/images/beach.png" class="lg:h-screen w-full" />
       </div>
       <div class="swiper-slide">
-        <img src="/images/airbnb.jpg" class="lg:h-screen w-full" alt="Airbnb" />
+        <img src="/images/airbnb.jpg" class="lg:h-screen w-full" />
       </div>
       <div class="swiper-slide">
-        <img src="/images/nature.png" class="lg:h-screen w-full" alt="Nature" />
+        <img src="/images/nature.png" class="lg:h-screen w-full" />
       </div>
       <div class="swiper-slide">
-        <img src="/images/resale.png" class="lg:h-screen w-full" alt="Resale" />
+        <img src="/images/resale.png" class="lg:h-screen w-full" />
       </div>
       <div class="swiper-slide">
-        <img src="/images/sales.jpg" class="lg:h-screen w-full" alt="Sales" />
+        <img src="/images/sales.jpg" class="lg:h-screen w-full" />
       </div>
     </div>
   </div>
@@ -87,15 +41,11 @@ const property_data = await properties.json();
   <div class="swiper-button-prev absolute pl-4 !text-white"></div>
   <div class="swiper-button-next absolute pr-4 !text-white"></div>
 
-  <script is:inline src="https://unpkg.com/swiper/swiper-bundle.min.js"
-  ></script>
-  <link
-    href="https://unpkg.com/swiper/swiper-bundle.min.css"
-    rel="stylesheet"
-  />
+  <script is:inline src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
   <script is:inline>
-    document.addEventListener("DOMContentLoaded", function () {
-      new Swiper(".swiper-container", {
+    document.addEventListener('DOMContentLoaded', function () {
+      new Swiper('.swiper-container', {
         loop: true,
         slidesPerView: 1,
         spaceBetween: 8,
@@ -103,83 +53,22 @@ const property_data = await properties.json();
           delay: 7000,
         },
         pagination: {
-          el: ".swiper-pagination",
+          el: '.swiper-pagination',
           clickable: true,
         },
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         },
-        effect: "cube",
-        parallax: true,
-        keyboard: {
-          enabled: true,
+        effect:"cube",
+        parallax:true,
+        keyboard:{
+          enabled:true
         },
-        speed: 1000,
-      });
-    });
+        speed:1000
+      })
+    })
   </script>
-  <style>
-    /* Define a global font family for the entire document */
-    body {
-      font-family: "Roboto", sans-serif;
-    }
-
-    /* Adjust font sizes and weights for headings */
-    h2,
-    h3 {
-      font-size: 2rem; /* Adjusting size as needed */
-      font-weight: 700; /* Bold for headings */
-      line-height: 1.2; /* Adjusting line height for readability */
-    }
-
-    /* Adjust font sizes and weights for body text */
-    p,
-    a {
-      font-size: 1rem; /* Adjusting size as needed */
-      font-weight: 400; /* Normal weight for body text */
-      line-height: 1.5; /* Adjusting line height for readability */
-    }
-
-    /* Adjust button styles for a more modern look */
-    button {
-      font-size: 0.875rem; /* Adjusting size as needed */
-      font-weight: 500; /* Medium weight for buttons */
-      line-height: 1.5; /* Adjusting line height for readability */
-      padding: 0.5rem 1rem; /* Adjusting padding for better appearance */
-      border-radius: 0.25rem; /* Rounded corners for a modern look */
-    }
-
-    /* Additional styles for visual appeal */
-    .bg-white {
-      background-color: #ffffff;
-    }
-
-    .shadow-md {
-      box-shadow:
-        0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-
-    .text-blue-800 {
-      color: #1e3a8a;
-    }
-
-    .text-gray-600 {
-      color: #4a5568;
-    }
-
-    .bg-yellow-600 {
-      background-color: #d97706;
-    }
-
-    .text-white {
-      color: #ffffff;
-    }
-  </style>
-
-  <!-- page HTML content -->
-
   <section class="bg-white shadow-md container mx-auto mt-16 p-6">
     <h2 class="text-center text-4xl font-serif uppercase text-blue-800">
       On going projects
@@ -187,27 +76,20 @@ const property_data = await properties.json();
     <div class="mt-4 grid sm:grid-cols-3 gap-2 divide-x-2">
       {
         property_data.map((item) => (
-          <a
-            href={`/properties/${item.slug}`}
-            class="block rounded-lg p-4 bg-white shadow-sm"
-          >
+          <a href={`/properties/${item.slug}`} class="block rounded-lg p-4 bg-white shadow-sm">
             <img
-              alt={item.acf.property_name}
-              src={
-                item._embedded["wp:featuredmedia"][0].media_details.sizes.large
-                  .source_url
-              }
+              alt={item.acf?.property_name || ''}
+              src={item._embedded["wp:featuredmedia"]?.[0]?.media_details?.sizes?.large?.source_url || ''}
               class="h-56 w-full rounded-md object-cover"
             />
             <p class="text-xl text-center mt-2 uppercase text-blue-800">
-              {item.acf.property_location}
+              {item.acf?.property_location || ''}
             </p>
             <h2 class="text-xl text-center mt-2 uppercase text-blue-800 font-serif">
-              {item.acf.property_name}
+              {item.acf?.property_name || ''}
             </h2>
-            {/* remove property_brief_description to improve visual appearance */}
             <p class="text-gray-600 mt-2">
-              {/* {item.acf.property_brief_description} */}
+              {item.acf?.property_brief_description || ''}
             </p>
             <div class="grid grid-cols-2 gap-4 divide-x-2">
               <div class="flex flex-col">
@@ -215,7 +97,7 @@ const property_data = await properties.json();
                   Total Cost
                 </p>
                 <button class="p-2 font-black">
-                  {item.acf.property_price}
+                  {item.acf?.property_price || ''}
                 </button>
               </div>
               <div class="flex flex-col">
@@ -223,54 +105,47 @@ const property_data = await properties.json();
                   Booking Fee
                 </p>
                 <button class="p-2 font-black">
-                  {item.acf.property_booking_fee}
+                  {item.acf?.property_booking_fee || ''}
                 </button>
               </div>
-              <button class="bg-yellow-600 p-2 text-white col-span-2">
-                View Property
-              </button>
+              <button class="bg-yellow-600 p-2 text-white col-span-2">View Property</button>
             </div>
           </a>
         ))
       }
     </div>
   </section>
-
   <section class="bg-white shadow-md container mx-auto mt-4 p-6">
     <h2 class="text-center text-4xl font-serif uppercase text-blue-800 mb-4">
+      Watch Our Videos
     </h2>
-    <div
-      class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
-    >
+    <div class="mt-4 grid lg:grid-cols-2 gap-4 p-6">
+      {
+        video_data.map((item) => (
+          <div class="mt-4 max-w-sm sm:max-w-lg overflow-hidden" set:html={item.content.rendered}></div>
+        ))
+      }
+    </div>
+  </section>
+  <section class="bg-white shadow-md container mx-auto mt-4 p-6">
+    <h2 class="text-center text-4xl font-serif uppercase text-blue-800 mb-4">
+      Blog Posts
+    </h2>
+    <div class="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         blog_data.map((item) => (
-          <a
-            href={`/blog/${item.slug}`}
-            class="max-w-sm mx-auto group hover:no-underline focus:no-underline"
-          >
+          <a href={`/blog/${item.slug}`} class="max-w-sm mx-auto group hover:no-underline focus:no-underline">
             <div class="relative">
-              <img
-                role="presentation"
-                class="object-cover w-full rounded h-44"
-                src={
-                  item._embedded["wp:featuredmedia"]
-                    ? item._embedded["wp:featuredmedia"][0].media_details.sizes
-                        .full.source_url
-                    : ""
-                }
-
-              />
-			  {/* removing the author name to improve visual appearance */}
-              {/* <p class="absolute bg-black bg-opacity-80 bottom-1 text-white p-2"> */}
-              {/* Post written by: {item['_embedded'].author[0].name} */}
-              {/* </p> */}
+              <img role="presentation" class="object-cover w-full rounded h-44" src={item._embedded["wp:featuredmedia"]?.[0]?.media_details?.sizes?.full?.source_url || ''} />
+              {/* Removing the author name to improve visual appearance */}
+              {/* <p class="absolute bg-black bg-opacity-80 bottom-1 text-white p-2">
+                Post written by: {item['_embedded'].author[0].name}
+              </p> */}
             </div>
             <div class="space-y-2">
-              <h3 class="font-serif font-light group-hover:underline group-focus:underline text-xl">
-                {item.title.rendered}
-              </h3>
+              <h3 class="font-serif font-light group-hover:underline group-focus:underline text-xl">{item.title.rendered}</h3>
               <span class="text-xs">{item.date_gmt}</span>
-			  {/* remove the excerpt to improve visual appearance */}
+              {/* Remove the excerpt to improve visual appearance */}
               {/* <span set:html={item.excerpt.rendered}></span> */}
             </div>
           </a>
