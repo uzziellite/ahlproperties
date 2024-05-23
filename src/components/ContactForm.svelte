@@ -24,7 +24,7 @@
 			report = "Message sent successfully"
 		}).catch(err => {
 			loading = false
-			error = "An error occured. Unable to send message at the moment. Please try again later"
+			error = "An error occurred. Unable to send message at the moment. Please try again later"
 			console.error(err)
 		})
 	}
@@ -35,11 +35,11 @@
 	</button>
 	<label class="block">
 		<span class="mb-1">Full name</span>
-		<input type="text" placeholder="Leroy Jenkins" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={name} required name="name" autocomplete="name">
+		<input type="text" placeholder="James Amani" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={name} required name="name" autocomplete="name">
 	</label>
 	<label class="block">
 		<span class="mb-1">Email address</span>
-		<input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required name="email" autocomplete="email">
+		<input type="email" placeholder="Amanijames@gmail.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required name="email" autocomplete="email">
 	</label>
 	<label class="block">
 		<span class="mb-1">Subject</span>

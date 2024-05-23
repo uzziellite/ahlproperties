@@ -44,22 +44,24 @@
         </p>
         <div class="flex space-x-3 lg:space-x-0 lg:flex-col lg:right-0 lg:fixed lg:space-y-3" style="top: 30%; z-index: 2;">
           <a href="https://www.facebook.com/ahlproperties.ke" title="Facebook" class="flex items-center p-1 text-yellow-600" target="_blank">
-            <img src="/images/facebook.svg">
+            <img src="/images/facebook.svg" alt="facebook">
           </a>
           <!--<a rel="noopener noreferrer" href="https://twitter.com/ahl_properties" title="Twitter" class="flex items-center p-1 text-yellow-600" target="_blank">
-            <img src="/images/twitter.svg">
+            <img src="/images/twitter.svg" alt="Twitter">
           </a>-->
           <a rel="noopener noreferrer" href="https://www.tiktok.com/@ahlproperties" title="Tiktok" class="flex items-center p-1 text-yellow-600" target="_blank">
-            <img src="/images/tiktok.svg">
+            <img src="/images/tiktok.svg" alt="TikTok">
           </a>
           <a href="https://instagram.com/ahlproperties.ke" title="Instagram" class="flex items-center p-1 text-yellow-600" target="_blank">
-            <img src="/images/instagram.svg">
+            <img src="/images/instagram.svg" alt="Instagram">
           </a>
           <a href="https://www.youtube.com/@ahlproperties7311" title="Youtube" class="flex items-center p-1 text-yellow-600" target="_blank">
-            <img src="/images/youtube.svg">
+            
+            <img src="/images/youtube.svg" alt="Youtube">
           </a>
           <a href="https://web.whatsapp.com/send?phone=254734990660" title="Whatsapp" class="flex items-center p-1 text-yellow-600" target="_blank">
-            <img src="/images/whatsapp.svg">
+          
+            <img src="/images/whatsapp.svg" alt="Whatsapp">
           </a>
         </div>
       </div>
