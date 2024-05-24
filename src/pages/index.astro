@@ -194,7 +194,7 @@ const property_data = await properties.json();
             <img
               alt={item.acf.property_name}
               src={
-                item._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes?.large?.source_url || '/images/sample-1.jpg'
+                item._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes?.full?.source_url || '/images/sample-1.jpg'
               }
               class="h-56 w-full rounded-md object-cover"
             />
