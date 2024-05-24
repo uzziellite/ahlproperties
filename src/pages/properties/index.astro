@@ -21,9 +21,8 @@ const data = await res.json()
 		{
 		  data.map((item) => {
 			// Check if the featured image is available
-			//const hasImage = item._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes?.large?.source_url;
-			//const imageUrl = hasImage ? hasImage : '/images/sample-1.jpg'; // Fallback image URL
-			const imageUrl = '/images/sample-1.jpg';
+			const hasImage = item._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes?.full?.source_url;
+			const imageUrl = hasImage ? hasImage : '/images/sample-1.jpg'; // Fallback image URL
   
 			return (
 			  <a href={`/properties/${item.slug}`} class="block rounded-lg p-4 bg-white shadow-sm">
