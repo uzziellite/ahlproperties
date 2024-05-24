@@ -194,8 +194,7 @@ const property_data = await properties.json();
             <img
               alt={item.acf.property_name}
               src={
-                item._embedded["wp:featuredmedia"][0].media_details.sizes.large
-                  .source_url
+                item._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes?.large?.source_url || '/images/sample-1.jpg'
               }
               class="h-56 w-full rounded-md object-cover"
             />
@@ -253,10 +252,7 @@ const property_data = await properties.json();
                 role="presentation"
                 class="object-cover w-full rounded h-44"
                 src={
-                  item._embedded["wp:featuredmedia"]
-                    ? item._embedded["wp:featuredmedia"][0].media_details.sizes
-                        .full.source_url
-                    : ""
+                  item._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes?.large?.source_url || '/images/sample-1.jpg'
                 }
               />
               {/* <p class="absolute bg-black bg-opacity-80 bottom-1 text-white p-2"> */}
