@@ -96,7 +96,7 @@
   </p>
   <label class="block">
     <span class="mb-1">Full name</span>
-    <input type="text" placeholder="Leroy Jenkins" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={name} required name="name" autocomplete="name">
+    <input type="text" placeholder="Amani James" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={name} required name="name" autocomplete="name">
   </label>
   <label class="block">
     <span class="mb-1">Phone Number</span>
@@ -104,7 +104,7 @@
   </label>
   <label class="block">
     <span class="mb-1">Email address</span>
-    <input type="email" placeholder="leroy@jenkins.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required name="email" autocomplete="email">
+    <input type="email" placeholder="amanijames@gmail.com.com" class="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:ring-indigo-400" bind:value={email} required name="email" autocomplete="email">
   </label>
   <label class="block">
     <span class="mb-1">ID Number</span>

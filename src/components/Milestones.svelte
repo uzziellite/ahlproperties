@@ -77,7 +77,7 @@
 	            Years Experience
 	          </dt>
 
-	          <dd class="text-4xl font-extrabold text-blue-800 md:text-5xl num" data-val="5">
+	          <dd class="text-4xl font-extrabold text-blue-800 md:text-5xl num" data-val="3">
 	          	0
 	          </dd>
         	</div>
